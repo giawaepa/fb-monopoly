@@ -1,0 +1,95 @@
+/* Map Container */
+div#map {
+	display: absolute;
+	width:760px;
+	height:400px;
+	border:1px solid #D8D8D8;
+	background-color: white;
+	z-index:0;
+	overflow: hidden;
+}
+div.content {
+	position: relative;
+	overflow: hidden;
+	background-color: white;
+}
+/* Tile Container */
+div.tile {
+	width:64px;
+	position: absolute;
+	height:64px;
+	line-height:64px;
+	
+}
+div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4; -khtml-opacity:0.4; }
+
+/* Specific tiles */
+.grass_0 { 
+	background-image:url('../images/grass_and_water.png');
+	background-position:0px 0px; 
+}
+.grass_1 { background-position:64px 0px;  }
+.grass_2 { background-position:128px 0px; }
+.grass_3 { background-position:192px 0px;  }
+.grass_4 { background-position:0px 58px;  }
+.grass_5 { background-position:64px 58px;  }
+.grass_6 { background-position:128px 58px;}
+.grass_7 { background-position:192px 58px; }
+.ground_0 {
+	background-image:url('../images/plain2.png'); 
+	background-position:0px 0px; 
+}
+.tree_1 {
+	background:transparent url('../images/tree_short.png') top left no-repeat; 
+	background-size: 64px auto;
+	position:relative;
+	width: 64px;
+	height: 100px;
+	bottom: 54px;
+	left: 2px;
+}
+.tree_2 {
+	background:transparent url('../images/tree_tall.png') top left no-repeat; 
+	background-size: 64px auto;
+	position:relative;
+	width: 64px;
+	height: 100px;
+	bottom: 54px;
+	left: 2px;
+}
+.house_1 {
+	background:transparent url('../images/house.png') top left no-repeat; 
+	background-size: 100px auto;
+	position:relative;
+	width: 100px;
+	height: 100px;
+	bottom: 20px;
+	left: -15px;
+}
+.npc_0 { 
+	background:transparent url('../images/temple.png') top left no-repeat; 
+	position:relative;
+	width:256px; 
+	height:128px;
+	left:-128px;
+	bottom:96px; 
+}
+.npc_1 {
+	background:transparent url('../images/char_horngirl.png') top left no-repeat; 
+	background-size: 64px auto;
+	position:relative;
+	width: 64px;
+	height: 100px;
+	bottom: 54px;
+	left: 2px;
+}
+#character {
+	background:transparent url('../images/char_princess.png') top left no-repeat; 
+	background-size: 64px auto;
+	position:relative;
+	width: 64px;
+	height: 100px;
+	top: 365px;
+	left: 945px;
+	z-index: 9998;
+}
