@@ -4,6 +4,55 @@ $(document).ready(function() {
 	var dice = false;
 	var mapxpos = 10, mapypos = 10;
 	
+	//Set character initial position
+	$('#character').css('left','124px').css('top','365px');
+	var chartile = [1,1]; 
+	var prevtile = [1,1];
+	
+	var moveChar = function() {
+		//Get current tile
+		y = chartile[1];
+		x = chartile[0];
+		console.log("x:"+x+" y:"+y);
+		console.log("prev_x:"+prevtile[0]+" prev_y:"+prevtile[1]);
+		
+		//Check surrounding tile
+		if ((map[y+1][x] == 0)&&((y+1) != prevtile[1])) {
+			chartile[1]++;
+			prevtile[0] = x;
+			prevtile[1] = y;
+			$('#character').animate({
+				top: '-=15',
+				left: '+=30'
+			})
+		} else if ((map[y][x+1] == 0)&&((x+1) != prevtile[0])) {
+			chartile[0]++;
+			prevtile[0] = x;
+			prevtile[1] = y;
+			$('#character').animate({
+				top: '+=15',
+				left: '+=30'
+			})			
+		} else if ((map[y-1][x] == 0)&&((y-1) != prevtile[1])) {
+			chartile[1]--;
+			prevtile[0] = x;
+			prevtile[1] = y;
+			$('#character').animate({
+				top: '+=15',
+				left: '-=30'
+			})			
+		} else if ((map[y][x-1] == 0)&&((x-1) != prevtile[0])) {
+			chartile[0]--;
+			prevtile[0] = x;
+			prevtile[1] = y;
+			$('#character').animate({
+				top: '-=15',
+				left: '-=30'
+			})			
+		}
+		
+	};
+	
 	//Content Container Key events
 	$('body').keydown(function(evt) {
 		switch(evt.keyCode) {
@@ -86,56 +135,15 @@ $(document).ready(function() {
 		$('#cube')[0].style.webkitTransform = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
 		$('#console').html("");
 		$('#console').html("Move " + number + " spaces.");
-	});
-	
-	//Set character initial position
-	$('#character').css('left','124px').css('top','365px');
-	var chartile = [1,1]; 
-	var prevtile = [1,1];
-	
-	function moveChar() {
-		//Get current tile
-		y = chartile[1];
-		x = chartile[0];
-		console.log("x:"+x+" y:"+y);
-		console.log("prev_x:"+prevtile[0]+" prev_y:"+prevtile[1]);
-		
-		//Check surrounding tile
-		if ((map[y+1][x] == 0)&&((y+1) != prevtile[1])) {
-			chartile[1]++;
-			prevtile[0] = x;
-			prevtile[1] = y;
-			$('#character').animate({
-				top: '-=15',
-				left: '+=30'
-			})
-		} else if ((map[y][x+1] == 0)&&((x+1) != prevtile[0])) {
-			chartile[0]++;
-			prevtile[0] = x;
-			prevtile[1] = y;
-			$('#character').animate({
-				top: '+=15',
-				left: '+=30'
-			})			
-		} else if ((map[y-1][x] == 0)&&((y-1) != prevtile[1])) {
-			chartile[1]--;
-			prevtile[0] = x;
-			prevtile[1] = y;
-			$('#character').animate({
-				top: '+=15',
-				left: '-=30'
-			})			
-		} else if ((map[y][x-1] == 0)&&((x-1) != prevtile[0])) {
-			chartile[0]--;
-			prevtile[0] = x;
-			prevtile[1] = y;
-			$('#character').animate({
-				top: '-=15',
-				left: '-=30'
-			})			
+		for (i=0;i<number;i++) {
+			setTimeout(function() {
+				moveChar();
+				mapxpos = chartile[0];
+				mapypos = chartile[1];
+				$('div#map').gameMap.moveMap(mapxpos,mapypos);
+			},1000);
 		}
-		
-	};
+	});
 	
 	$('#move').click(function() {
 		moveChar();
