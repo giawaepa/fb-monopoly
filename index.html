@@ -5,6 +5,7 @@
 		<link rel="stylesheet" href="css/map_styles.css" type="text/css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
 		<script type="text/javascript" src="scripts/gameMap.js" ></script>
+		<script type="text/javascript" src="/_ah/channel/jsapi"></script>
 		<script src="http://connect.facebook.net/en_US/all.js"></script>
 	</head>
 	<body>
@@ -31,16 +32,20 @@
 				<div id="bubble_dice"><strong>CLICK TO ROLL DICE!</strong></div>
 			</div>
 			<div id="console"></div>
+			<div id="userlist_container">
+				<p>Users Online:</p>
+				<div id="userlist"></div>
+			</div>
 			<div id="map"><div id="character"></div></div>
 		</section>
 		<section id="interface">
 			<p></p>
-			<button id="move">Move</button>
 		</section>
 	
 		<!--  Scripts -->
 		<div id="fb-root"></div>
 		<script type="text/javascript" src ="scripts/global.js"></script>
 		<script type="text/javascript" src ="scripts/fb.js"></script>
+		<script type="text/javascript" src ="scripts/channel.js"></script>
 	</body>
 </html>
