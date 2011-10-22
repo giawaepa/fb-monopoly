@@ -116,6 +116,8 @@ $(document).ready(function() {
 			}
 			
 			moveDirection();
+			
+			// Update map location
 			mapxpos = chartile[0];
 			mapypos = chartile[1];
 			$('div#map').gameMap.moveMap(mapxpos,mapypos);
@@ -202,6 +204,15 @@ $(document).ready(function() {
 		//Get current tile
 		y = chartile[1];
 		x = chartile[0];
+		
+		// Update previous tile
+		prevtile[0] = x;
+		prevtile[1] = y;
+		
+		// Increment moving count
+		isMoving++;
+		
+		// Debug info
 		console.log("x:"+x+" y:"+y);
 		console.log("prev_x:"+prevtile[0]+" prev_y:"+prevtile[1]);
 		
@@ -209,15 +220,14 @@ $(document).ready(function() {
 		{
 			// Up
 			chartile[1]++;
-			prevtile[0] = x;
-			prevtile[1] = y;
-			isMoving++;
 			$('#character').animate({
 				top: '-=15',
 				left: '+=30'
 			}, function() {
 				// Animation complete.
 				isMoving--;
+				
+				// Show arrows if necessary
 				showArrows();
 			});
 		}
@@ -225,15 +235,14 @@ $(document).ready(function() {
 		{
 			// right
 			chartile[0]++;
-			prevtile[0] = x;
-			prevtile[1] = y;
-			isMoving++;
 			$('#character').animate({
 				top: '+=15',
 				left: '+=30'
 			}, function() {
 				// Animation complete.
 				isMoving--;
+				
+				// Show arrows if necessary
 				showArrows();
 			});
 		}
@@ -241,15 +250,14 @@ $(document).ready(function() {
 		{
 			// down
 			chartile[1]--;
-			prevtile[0] = x;
-			prevtile[1] = y;
-			isMoving++;
 			$('#character').animate({
 				top: '+=15',
 				left: '-=30'
 			}, function() {
 				// Animation complete.
 				isMoving--;
+				
+				// Show arrows if necessary
 				showArrows();
 			});
 		}
@@ -257,15 +265,14 @@ $(document).ready(function() {
 		{
 			// left
 			chartile[0]--;
-			prevtile[0] = x;
-			prevtile[1] = y;
-			isMoving++;
 			$('#character').animate({
 				top: '-=15',
 				left: '-=30'
 			}, function() {
 				// Animation complete.
-				isMoving--;
+				isMoving--;				
+				
+				// Show arrows if necessary
 				showArrows();
 			});
 		}
