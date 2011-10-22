@@ -184,6 +184,18 @@
             obj.scrollLeft((config.tilesize+((x*config.xcorrection)+((y)*config.xcorrection)))-(wWidth/2)).scrollTop((half-(((y)*config.ycorrection)-(x*config.ycorrection)))-(wHeight/2));
         }
         
+		// this function returns the x position for given tile position
+		$.fn.gameMap.getTileX = function(x,y) {
+			var xpos = config.tilesize+((x*config.xcorrection)+((y)*config.xcorrection));
+			return xpos;
+		}
+
+		// this function returns the y position for given tile position
+		$.fn.gameMap.getTileY = function(x,y) {
+			var ypos = half-(((y)*config.ycorrection)-(x*config.ycorrection));
+			return ypos;
+		}
+		
         // call the constructor function
         $.fn.gameMap.init_game_interface();
         // return the jQuery object as every jQuery function does

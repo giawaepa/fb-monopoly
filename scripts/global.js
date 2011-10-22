@@ -52,69 +52,246 @@ $(document).ready(function() {
 	//Generate the map
 	$('div#map').gameMap({map:map,object:objectmap,xpos:0,ypos:0,mapsize:20}); 
 	
-	//Set character initial position
-	$('#character').css('left','124px').css('top','365px');
-	//var chartile = [1,1]; 
-	var prevtile = [1,1];
+	//Set character initial position	
+	$('#character').css('left','125px').css('top','400px');
+	var prevtile = [0,0];
 	
+	// Keep record of char direciton
+	var direction = 0;
+	
+	// Keep count of tiles to move
+	var number = 0;
+	
+	// Keep record whether character still moving
+	var isMoving = 0;
+	var arrArrows = [0,0,0,0];
+	
+	// Set intersection arrow position
+	$('#arrow_down_btn').css('left','-25px').css('top','70px');
+	$('#arrow_right_btn').css('left','45px').css('top','35px');
+	$('#arrow_up_btn').css('left','55px').css('top','-40px').css({'opacity' : 0.8});
+	$('#arrow_left_btn').css('left','-30px').css('top','-80px');
+	
+	// Set intersection button click
+	$('#arrow_down_btn').click(function() {
+		direction = 3;
+		moveChar();
+	});
+	
+	$('#arrow_right_btn').click(function() {
+		direction = 2;
+		moveChar();
+	});
+	
+	$('#arrow_up_btn').click(function() {
+		direction = 1;
+		moveChar();
+	});
+	
+	$('#arrow_left_btn').click(function() {
+		direction = 4;
+		moveChar();
+	});
+	
+	// Character movement and arrow display functions
 	var moveChar = function() {
+		// Hide arrows when character moving
+		$('#arrow_up_btn').css('visibility','hidden');
+		$('#arrow_right_btn').css('visibility','hidden');
+		$('#arrow_down_btn').css('visibility','hidden');
+		$('#arrow_left_btn').css('visibility','hidden');
+			
+		while( number > 0 )
+		{
+			// Check Tile
+			if ( direction == 0 )
+			{
+				findDirection();
+				if ( direction == 0 )
+				{
+					// intersection found
+					// return and wait for user selection
+					return;
+				}
+			}
+			
+			moveDirection();
+			mapxpos = chartile[0];
+			mapypos = chartile[1];
+			$('div#map').gameMap.moveMap(mapxpos,mapypos);
+			
+			number--;
+		}
+	}
+	
+	var findDirection = function() {
+		//Get current tile
+		y = chartile[1];
+		x = chartile[0];
+		
+		// Check tile
+		var numRoute = [0,0,0,0];
+		if ((map[y+1][x] == 0)&&((y+1) != prevtile[1]))
+		{
+			numRoute[0] = 1;
+			direction = 1;
+		}
+		
+		if ((map[y][x+1] == 0)&&((x+1) != prevtile[0]))
+		{
+			numRoute[1] = 1;
+			direction = 2;
+		}
+		
+		if ((map[y-1][x] == 0)&&((y-1) != prevtile[1])) 
+		{
+			numRoute[2] = 1;
+			direction = 3;
+		}
+		
+		if ((map[y][x-1] == 0)&&((x-1) != prevtile[0])) 
+		{
+			numRoute[3] = 1;
+			direction = 4;
+		}
+		
+		if ( (numRoute[0]+numRoute[1]+numRoute[2]+numRoute[3]) > 1 )
+		{
+			// Intersection detected
+			direction = 0;
+			
+			// Store intesection arrows
+			arrArrows[0] = numRoute[0];
+			arrArrows[1] = numRoute[1];
+			arrArrows[2] = numRoute[2];
+			arrArrows[3] = numRoute[3];
+			
+			// Show arrows
+			showArrows();
+		}
+	}
+	
+	var showArrows = function() {
+		if ( isMoving == 0 )
+		{
+			if ( arrArrows[0] )
+			{
+				$('#arrow_up_btn').css('visibility','visible');
+			}
+			
+			if ( arrArrows[1] )
+			{
+				$('#arrow_right_btn').css('visibility','visible');
+			}
+			
+			if ( arrArrows[2] )
+			{
+				$('#arrow_down_btn').css('visibility','visible');
+			}
+			
+			if ( arrArrows[3] )
+			{
+				$('#arrow_left_btn').css('visibility','visible');
+			}
+			
+			arrArrows = [0,0,0,0];
+		}
+	}
+	
+	var moveDirection = function() {		
 		//Get current tile
 		y = chartile[1];
 		x = chartile[0];
 		console.log("x:"+x+" y:"+y);
 		console.log("prev_x:"+prevtile[0]+" prev_y:"+prevtile[1]);
 		
-		//Check surrounding tile
-		if ((map[y+1][x] == 0)&&((y+1) != prevtile[1])) {
+		if ( direction == 1 )
+		{
+			// Up
 			chartile[1]++;
 			prevtile[0] = x;
 			prevtile[1] = y;
+			isMoving++;
 			$('#character').animate({
 				top: '-=15',
 				left: '+=30'
-			})
-		} else if ((map[y][x+1] == 0)&&((x+1) != prevtile[0])) {
+			}, function() {
+				// Animation complete.
+				isMoving--;
+				showArrows();
+			});
+		}
+		else if ( direction == 2 )
+		{
+			// right
 			chartile[0]++;
 			prevtile[0] = x;
 			prevtile[1] = y;
+			isMoving++;
 			$('#character').animate({
 				top: '+=15',
 				left: '+=30'
-			})			
-		} else if ((map[y-1][x] == 0)&&((y-1) != prevtile[1])) {
+			}, function() {
+				// Animation complete.
+				isMoving--;
+				showArrows();
+			});
+		}
+		else if ( direction == 3 )
+		{
+			// down
 			chartile[1]--;
 			prevtile[0] = x;
 			prevtile[1] = y;
+			isMoving++;
 			$('#character').animate({
 				top: '+=15',
 				left: '-=30'
-			})			
-		} else if ((map[y][x-1] == 0)&&((x-1) != prevtile[0])) {
+			}, function() {
+				// Animation complete.
+				isMoving--;
+				showArrows();
+			});
+		}
+		else if ( direction == 4 )
+		{
+			// left
 			chartile[0]--;
 			prevtile[0] = x;
 			prevtile[1] = y;
+			isMoving++;
 			$('#character').animate({
 				top: '-=15',
 				left: '-=30'
-			})			
+			}, function() {
+				// Animation complete.
+				isMoving--;
+				showArrows();
+			});
 		}
 		
+		// Reset direction
+		direction = 0;
 	};
 	
 	//Content Container Key events
 	$('body').keydown(function(evt) {
 		switch(evt.keyCode) {
-			case 37: // left
+			case 37: // left				
 				mapxpos -= 1;
+				mapypos -= 1;
 				break;
-			case 38: // up
-				mapypos += 1;				
+			case 38: // up				
+				mapxpos -= 1;
+				mapypos += 1;
 				break;
 			case 39: // right
 				mapxpos += 1;
+				mapypos +=1;
 				break;
 			case 40: // down
-				mapypos -= 1;
+				mapxpos += 1;
+				mapypos -=1;
 				break;
 		};
 		$('div#map').gameMap.moveMap(mapxpos,mapypos);
@@ -143,6 +320,12 @@ $(document).ready(function() {
 	});
 		
 	$('#cube_btn').click(function() {
+		// Check to make sure character isn't moving still
+		if ( number != 0 )
+		{
+			return;
+		}
+		
 		//Animation dice up/down animation
 		$('#cube').animate({top: '-=50'},100, 
 		function() {
@@ -183,13 +366,10 @@ $(document).ready(function() {
 		$('#cube')[0].style.webkitTransform = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
 		$('#console').html("");
 		$('#console').html("Move " + number + " spaces.");
-		for (i=0;i<number;i++) {
-			setTimeout(function() {
-				moveChar();
-				mapxpos = chartile[0];
-				mapypos = chartile[1];
-				$('div#map').gameMap.moveMap(mapxpos,mapypos);
-			},1000);
-		}
+		
+		setTimeout(function() 
+		{
+			moveChar();
+		}, 1000);
 	});	
 });

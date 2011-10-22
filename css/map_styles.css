@@ -93,3 +93,39 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	left: 945px;
 	z-index: 9998;
 }
+
+#arrow_up_btn {
+	visibility:hidden;	
+	width: 34px;
+	height: 34px;
+	display: block;
+	position:relative;	
+	background: url('../images/arrow_up.png') top left no-repeat;
+}
+
+#arrow_down_btn {
+	visibility:hidden;	
+	width: 34px;
+	height: 34px;
+	display: block;
+	position:relative;	
+	background: url('../images/arrow_down.png') top left no-repeat;
+}
+
+#arrow_left_btn {
+	visibility:hidden;	
+	width: 34px;
+	height: 34px;
+	display: block;
+	position:relative;	
+	background: url('../images/arrow_left.png') top left no-repeat;
+}
+
+#arrow_right_btn {
+	visibility:hidden;	
+	width: 34px;
+	height: 34px;
+	display: block;
+	position:relative;	
+	background: url('../images/arrow_right.png') top left no-repeat;
+}
