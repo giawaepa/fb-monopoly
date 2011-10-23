@@ -25,6 +25,7 @@ section#header_container:after {
 /* Loading Container */
 div#loading_container {
 	position: absolute;
+	display: block;
 	width: 761px;
 	height: 401px;
 	background-color: white;

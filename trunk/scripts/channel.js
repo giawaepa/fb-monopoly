@@ -67,8 +67,8 @@ function onMessage(m) {
     	console.log("[STATUS] Updating User location...");
     	console.log("[INFO] Location: " + newMessage.location);
     	end = newMessage.location.indexOf('.');
-    	chartile[0] = newMessage.location.substring(0,end);
-    	chartile[1] = newMessage.location.substring(end+1);
+    	//chartile[0] = newMessage.location.substring(0,end);
+    	//chartile[1] = newMessage.location.substring(end+1);
     } else if (newMessage.method == "updateUsers") {
     	console.log("[STATUS] Updating User List...");
     	list = "";
