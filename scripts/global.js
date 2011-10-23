@@ -50,7 +50,7 @@ $(document).ready(function() {
 					[4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
 	
 	//Generate the map
-	$('div#map').gameMap({map:map,object:objectmap,xpos:0,ypos:0,mapsize:20}); 
+	$('div#map').gameMap({map:map,object:objectmap,xpos:10,ypos:0,mapsize:20}); 
 	
 	//Set character initial position	
 	$('#character').css('left','125px').css('top','400px');
@@ -120,7 +120,7 @@ $(document).ready(function() {
 			// Update map location
 			mapxpos = chartile[0];
 			mapypos = chartile[1];
-			$('div#map').gameMap.moveMap(mapxpos,mapypos);
+			$('div#map').gameMap.moveMap(mapxpos+5,mapypos-5);
 			
 			number--;
 		}
