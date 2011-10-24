@@ -1,7 +1,8 @@
 var chartile = [1,1];
+var prevtile = [0,0];
 
 $(document).ready(function() {
-	//Instantialize global variables
+	//Initialize global variables
 	var xAngle = 0, yAngle = 0;
 	var dice = false;
 	var mapxpos = 10, mapypos = 10;
@@ -11,7 +12,7 @@ $(document).ready(function() {
 				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
 				[1,0,1,1,0,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1],
 				[1,0,0,0,0,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1],
-				[1,1,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1],
+				[1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1],
 				[1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1],
 				[1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1],
 				[1,0,1,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1],
@@ -54,9 +55,8 @@ $(document).ready(function() {
 	
 	//Set character initial position	
 	$('#character').css('left','125px').css('top','400px');
-	var prevtile = [0,0];
 	
-	// Keep record of char direciton
+	// Keep record of char direction
 	var direction = 0;
 	
 	// Keep count of tiles to move
@@ -118,13 +118,13 @@ $(document).ready(function() {
 			moveDirection();
 			
 			// Update map location
-			mapxpos = chartile[0];
-			mapypos = chartile[1];
-			$('div#map').gameMap.moveMap(mapxpos+5,mapypos-5);
+			mapxpos = chartile[0] + 5;
+			mapypos = chartile[1] - 5;
+			$('div#map').gameMap.moveMap(mapxpos,mapypos);
 			
 			number--;
 		}
-	}
+	};
 	
 	var findDirection = function() {
 		//Get current tile
@@ -162,7 +162,7 @@ $(document).ready(function() {
 			// Intersection detected
 			direction = 0;
 			
-			// Store intesection arrows
+			// Store intersection arrows
 			arrArrows[0] = numRoute[0];
 			arrArrows[1] = numRoute[1];
 			arrArrows[2] = numRoute[2];
@@ -171,7 +171,7 @@ $(document).ready(function() {
 			// Show arrows
 			showArrows();
 		}
-	}
+	};
 	
 	var showArrows = function() {
 		if ( isMoving == 0 )
@@ -198,7 +198,7 @@ $(document).ready(function() {
 			
 			arrArrows = [0,0,0,0];
 		}
-	}
+	};
 	
 	var moveDirection = function() {		
 		//Get current tile
@@ -214,7 +214,10 @@ $(document).ready(function() {
 		
 		// Debug info
 		console.log("x:"+x+" y:"+y);
-		console.log("prev_x:"+prevtile[0]+" prev_y:"+prevtile[1]);
+		//console.log("prev_x:"+prevtile[0]+" prev_y:"+prevtile[1]);
+		
+		//Save location to DB
+		saveLocation(x + '.' + y);
 		
 		if ( direction == 1 )
 		{
@@ -337,7 +340,7 @@ $(document).ready(function() {
 		$('#cube').animate({top: '-=50'},100, 
 		function() {
 			$('#cube').animate({top: '+=50'});
-		})
+		});
 		
 		//LEFT   yAngle -= 90
 		//RIGHT  yAngle += 90

@@ -64,11 +64,32 @@ function onMessage(m) {
     newMessage = JSON.parse(m.data);
     //console.log("[STATUS] Received new message...");
     if (newMessage.method == "updateUserLocation") {
+    	//Debug info
     	console.log("[STATUS] Updating User location...");
     	console.log("[INFO] Location: " + newMessage.location);
+    	
+    	//Parse Location
     	end = newMessage.location.indexOf('.');
-    	//chartile[0] = newMessage.location.substring(0,end);
-    	//chartile[1] = newMessage.location.substring(end+1);
+    	chartile[0] = parseInt(newMessage.location.substring(0,end));
+    	chartile[1] = parseInt(newMessage.location.substring(end+1));
+    	prevtile[0] = chartile[0];
+		prevtile[1] = chartile[1];
+    	
+    	//Map character tile to location on page
+    	var init_top = 400;
+    	var init_left = 125; 
+    	var left = 0,top = 0;
+    	for (i=0;i<chartile[0]-1;i++) {
+    		left+=30;
+    		top+=15;
+    	}
+    	for (j=0;j<chartile[1]-1;j++) {
+    		left+=30;
+    		top-=15;
+    	}
+    	
+    	//Position character
+    	$('#character').css('left',init_left + left).css('top',init_top + top);
     } else if (newMessage.method == "updateUsers") {
     	console.log("[STATUS] Updating User List...");
     	list = "";
@@ -81,6 +102,13 @@ function onMessage(m) {
     } else {
     	console.log("[STATUS] Method not handled.");
     }
+};
+
+function saveLocation(location) {
+    //Request to be removed from channel
+	var xhr = new XMLHttpRequest(); 
+    xhr.open('GET', '/client?method=save&userid='+user_id+'&location='+location, true);
+    xhr.send(null);
 };
 
 function leaveChannel() {
