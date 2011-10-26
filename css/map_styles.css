@@ -84,23 +84,32 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	left: 2px;
 }
 #character {
+	background-size: 64px auto;
+	position:relative;
+	width: 64px;
+	height: 100px;
+	top: 0px;
+	left: 0px;
+}
+#char_image {
 	background:transparent url('../images/char_princess.png') top left no-repeat; 
 	background-size: 64px auto;
 	position:relative;
 	width: 64px;
 	height: 100px;
-	top: 365px;
-	left: 945px;
+	top: 0px;
+	left: 0px;
 	z-index: 9998;
 }
 
 #arrow_up_btn {
-	visibility:hidden;	
+	visibility:hidden;
 	width: 34px;
 	height: 34px;
 	display: block;
 	position:relative;	
 	background: url('../images/arrow_up.png') top left no-repeat;
+	z-index: 8888;
 }
 
 #arrow_down_btn {
@@ -110,6 +119,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	display: block;
 	position:relative;	
 	background: url('../images/arrow_down.png') top left no-repeat;
+	z-index: 8888;
 }
 
 #arrow_left_btn {
@@ -119,6 +129,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	display: block;
 	position:relative;	
 	background: url('../images/arrow_left.png') top left no-repeat;
+	z-index: 8888;
 }
 
 #arrow_right_btn {
@@ -128,4 +139,49 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	display: block;
 	position:relative;	
 	background: url('../images/arrow_right.png') top left no-repeat;
+	z-index: 8888;
+}
+
+#land_up_btn {
+	visibility:hidden;
+	width: 64px;
+	height: 64px;
+	display: block;
+	position: relative;	
+	background: url('../images/select.png') top left no-repeat;
+	background-size: 64px auto;
+	z-index: 7777;
+}
+
+#land_down_btn {
+	visibility:hidden;
+	width: 64px;
+	height: 64px;
+	display: block;
+	position: relative;	
+	background: url('../images/select.png') top left no-repeat;
+	background-size: 64px auto;
+	z-index: 7777;
+}
+
+#land_left_btn {
+	visibility:hidden;
+	width: 64px;
+	height: 64px;
+	display: block;
+	position: relative;	
+	background: url('../images/select.png') top left no-repeat;
+	background-size: 64px auto;
+	z-index: 7777;
+}
+
+#land_right_btn {
+	visibility:hidden;
+	width: 64px;
+	height: 64px;
+	display: block;
+	position: relative;	
+	background: url('../images/select.png') top left no-repeat;
+	background-size: 64px auto;
+	z-index: 7777;
 }
