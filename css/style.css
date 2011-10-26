@@ -1,6 +1,7 @@
 body {
 	background-color: white;
 	overflow: hidden;
+	font-family:Sans-serif; 
 }
 
 /* Header Container */
@@ -30,7 +31,6 @@ div#loading_container {
 	height: 401px;
 	background-color: white;
 	z-index: 10000;
-	font-family:Sans-serif; 
     font-size: x-large;
     color: black;
     text-align: center;    
@@ -50,7 +50,6 @@ div#profile_container {
 	padding-left: 10px;
 	background-color: black;
 	z-index: 9999;
-	font-family:Sans-serif; 
     font-size: small;
     opacity:0.8;
 	filter:alpha(opacity=0.8);
@@ -104,10 +103,26 @@ section#interface {
 	margin-top: 370px;
 	background-color: black;
 	z-index: 9998;
-	font-family:Sans-serif; 
     font-size: small;
     opacity:0.8;
 	filter:alpha(opacity=0.8);
+}
+#console #console_text {
+	position: absolute;
+	margin-top: 4px;
+}
+#console #message_box {
+	position: absolute;
+	margin-top: 4px;
+	margin-left: 250px;
+	width: 340px;
+	z-index: 9998;
+}
+#console #message_sendBtn {
+	position: absolute;
+	margin-top: 4px;
+	margin-left: 600px;
+	z-index: 9998;
 }
 
 /* User List Container */
@@ -121,12 +136,31 @@ section#interface {
 	background-color: black;
 	color: white;
 	z-index: 9998;
-	font-family:Sans-serif; 
     font-size: small;
     opacity:0.8;
 	filter:alpha(opacity=0.8);
 	border-radius: 0px 40px 40px 0px;
 }	
+
+/* User Bubble */
+.bubble {
+	position: relative;
+	width: 100px;
+	height: auto;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px 5px 5px 0px;
+	opacity:1;
+	filter:alpha(opacity=1);
+	font-size: small;
+	color: white;
+	text-decoration: none;
+	background-color: #424242;		
+	padding: 5px;
+	top:0px;
+	left:0px;
+	z-index: 9999;
+}
 
 /* Dice */
 #bubble_dice {
@@ -142,7 +176,6 @@ section#interface {
 	-webkit-border-radius: 30px;
 	opacity:0;
 	filter:alpha(opacity=0);
-	font-family:Sans-serif; 
 }
 #diceview {
 	position: absolute;
@@ -179,6 +212,7 @@ section#interface {
 	-moz-border-radius: 10px;
 	-webkit-border-radius: 10px;
 	text-align: center;
+	font-family:"Times New Roman";
 	line-height:70%;
 	color: white;
 }

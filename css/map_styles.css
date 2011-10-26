@@ -98,7 +98,25 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 #char_image {
 	background:transparent url('../images/char_princess.png') top left no-repeat; 
 	background-size: 64px auto;
+	position:absolute;
+	width: 64px;
+	height: 100px;
+	top: 0px;
+	left: 0px;
+	z-index: 9998;
+}
+#character_other {
+	background-size: 64px auto;
 	position:relative;
+	width: 64px;
+	height: 100px;
+	top: 0px;
+	left: 0px;
+}
+.char_image {
+	background:transparent url('../images/char_horngirl.png') top left no-repeat; 
+	background-size: 64px auto;
+	position:absolute;
 	width: 64px;
 	height: 100px;
 	top: 0px;
@@ -111,7 +129,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	width: 34px;
 	height: 34px;
 	display: block;
-	position:relative;	
+	position:absolute;	
 	background: url('../images/arrow_up.png') top left no-repeat;
 	z-index: 8888;
 }
@@ -121,7 +139,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	width: 34px;
 	height: 34px;
 	display: block;
-	position:relative;	
+	position:absolute;	
 	background: url('../images/arrow_down.png') top left no-repeat;
 	z-index: 8888;
 }
@@ -131,7 +149,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	width: 34px;
 	height: 34px;
 	display: block;
-	position:relative;	
+	position:absolute;	
 	background: url('../images/arrow_left.png') top left no-repeat;
 	z-index: 8888;
 }
@@ -141,7 +159,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	width: 34px;
 	height: 34px;
 	display: block;
-	position:relative;	
+	position:absolute;	
 	background: url('../images/arrow_right.png') top left no-repeat;
 	z-index: 8888;
 }
@@ -151,7 +169,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	width: 64px;
 	height: 64px;
 	display: block;
-	position: relative;	
+	position: absolute;	
 	background: url('../images/select.png') top left no-repeat;
 	background-size: 64px auto;
 	z-index: 7777;
@@ -162,7 +180,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	width: 64px;
 	height: 64px;
 	display: block;
-	position: relative;	
+	position: absolute;	
 	background: url('../images/select.png') top left no-repeat;
 	background-size: 64px auto;
 	z-index: 7777;
@@ -173,7 +191,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	width: 64px;
 	height: 64px;
 	display: block;
-	position: relative;	
+	position: absolute;	
 	background: url('../images/select.png') top left no-repeat;
 	background-size: 64px auto;
 	z-index: 7777;
@@ -184,30 +202,38 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	width: 64px;
 	height: 64px;
 	display: block;
-	position: relative;	
+	position: absolute;	
 	background: url('../images/select.png') top left no-repeat;
 	background-size: 64px auto;
 	z-index: 7777;
 }
-
 #bubble_yes_btn {
-	visibility:hidden;
-	width: 64px;
-	height: 64px;
+	visibility:visible;
+	width: 20px;
+	height: 20px;
 	display: block;
-	position: relative;	
-	background: url('../images/bubble_green.png') top left no-repeat;
+	position: absolute;	
+	background: url('../images/bubble_green.png') top left no-repeat; 
 	background-size: 64px auto;
+	/* background-color: #ACFA58; */
 	z-index: 9999;
+	text-decoration: none;
+	color: #04B404;
+	padding: 20px;
+	border-radius: 25px 25px 0px 25px;
 }
-
 #bubble_no_btn {
-	visibility:hidden;
+	visibility:visible;
 	width: 64px;
 	height: 64px;
 	display: block;
-	position: relative;	
+	position: absolute;	
 	background: url('../images/bubble_red.png') top left no-repeat;
 	background-size: 64px auto;
+	/* background-color: #F5A9A9; */
 	z-index: 9999;
+	text-decoration: none;
+	padding: 20px 10px;
+	color: #B40404;
+	border-radius: 20px 20px 20px 0px;
 }
