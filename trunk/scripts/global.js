@@ -106,7 +106,13 @@ $(document).ready(function() {
 		$('#arrow_right_btn').css('visibility','hidden');
 		$('#arrow_down_btn').css('visibility','hidden');
 		$('#arrow_left_btn').css('visibility','hidden');
-			
+		
+		// Hide land selection
+		$('#land_up_btn').css('visibility','hidden');
+		$('#land_right_btn').css('visibility','hidden');
+		$('#land_down_btn').css('visibility','hidden');
+		$('#land_left_btn').css('visibility','hidden');
+		
 		while( number > 0 )
 		{
 			// Check Tile
@@ -238,6 +244,9 @@ $(document).ready(function() {
 				
 				// Show arrows if necessary
 				showArrows();
+				
+				// Check move end
+				moveEndAction();
 			});
 		}
 		else if ( direction == 2 )
@@ -253,6 +262,9 @@ $(document).ready(function() {
 				
 				// Show arrows if necessary
 				showArrows();
+				
+				// Check move end
+				moveEndAction();
 			});
 		}
 		else if ( direction == 3 )
@@ -268,6 +280,9 @@ $(document).ready(function() {
 				
 				// Show arrows if necessary
 				showArrows();
+				
+				// Check move end
+				moveEndAction();
 			});
 		}
 		else if ( direction == 4 )
@@ -283,6 +298,9 @@ $(document).ready(function() {
 				
 				// Show arrows if necessary
 				showArrows();
+				
+				// Check move end
+				moveEndAction();
 			});
 		}
 		
@@ -291,37 +309,51 @@ $(document).ready(function() {
 	};
 	
 	var moveEndAction = function() {
-		// Pay Rent?
-		
-		// Purchase land
+		// Check whether character stopped moving
+		if ( isMoving == 0 && number == 0)
+		{
+			// Highlight tile respective to character position
+			hightlightTile();
+		}
 	}
 	
-	var buyProperty = function() {
+	var hightlightTile = function() {
 		//Get current tile
 		y = chartile[1];
 		x = chartile[0];
-		
-		// Check tile
-		var numLand = [0,0,0,0];
-		if ((map[y+1][x] == 0)&&(objectmap[y+1][x] == 0))
+			
+		if ( prevtile[0] == x && prevtile[1] == y-1 )
 		{
-			numLand[0] = 1;
+			// Going Up
+			if ( map[y][x+1] != 0 )
+			{
+				$('#land_right_btn').css("visibility","visible");
+			}
 		}
-		
-		if ((map[y][x+1] == 0)&&(objectmap[y][x+1] == 0))
+		else if ( prevtile[0] == x && prevtile[1] == y+1 )
 		{
-			numLand[1] = 1;
+			// Going Down
+			if ( map[y][x-1] != 0 )
+			{
+				$('#land_left_btn').css("visibility","visible");
+			}
 		}
-		
-		if ((map[y-1][x] == 0)&&(objectmap[y-1][x] == 0))
+		else if ( prevtile[0] == x+1 && prevtile[1] == y)
 		{
-			numLand[2] = 1;
+			// Going Left
+			if ( map[y+1][x] != 0 )
+			{
+				$('#land_up_btn').css("visibility","visible");
+			}
 		}
-		
-		if ((map[y][x-1] == 0)&&(objectmap[y][x-1] == 0))
+		else if ( prevtile[0] == x-1 && prevtile[1] == y)
 		{
-			numLand[3] = 1;
-		}		
+			// Going Right
+			if ( map[y-1][x] != 0 )
+			{
+				$('#land_down_btn').css("visibility","visible");
+			}
+		}
 	}
 	
 	//Content Container Key events
@@ -415,7 +447,7 @@ $(document).ready(function() {
 		//Perform the rotate animation
 		$('#cube')[0].style.webkitTransform = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
 		$('#console').html("");
-		$('#console').html("Move " + number + " spaces.");
+		$('#console').html("Move " + number + " spaces.");		
 		
 		setTimeout(function() 
 		{
