@@ -208,7 +208,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	z-index: 7777;
 }
 #bubble_yes_btn {
-	visibility:visible;
+	visibility:hidden;
 	width: 20px;
 	height: 20px;
 	display: block;
@@ -223,7 +223,7 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	border-radius: 25px 25px 0px 25px;
 }
 #bubble_no_btn {
-	visibility:visible;
+	visibility:hidden;
 	width: 64px;
 	height: 64px;
 	display: block;
