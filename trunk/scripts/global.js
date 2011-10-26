@@ -1,6 +1,14 @@
+/*
+ * Global JQuery script
+ * Description: Handles all interactions
+ */
+
+//Global Variables
 var chartile = [1,1];
 var prevtile = [0,0];
 var landtile = [-1,-1];
+var init_top = 370;
+var init_left = 125; 
 
 $(document).ready(function() {
 	//Initialize global variables
@@ -55,7 +63,7 @@ $(document).ready(function() {
 	$('div#map').gameMap({map:map,object:objectmap,xpos:10,ypos:0,mapsize:20}); 
 	
 	//Set character container initial position	
-	$('#character').css('left','125px').css('top','365px');
+	$('#character').css('left',init_left).css('top',init_top+100);
 	
 	// Keep record of char direction
 	var direction = 0;
@@ -68,20 +76,21 @@ $(document).ready(function() {
 	var arrArrows = [0,0,0,0];
 	
 	// Set intersection arrow position
-	$('#arrow_down_btn').css('left','-25px').css('top','-30px');
-	$('#arrow_right_btn').css('left','45px').css('top','-65px');
-	$('#arrow_up_btn').css('left','55px').css('top','-140px');
-	$('#arrow_left_btn').css('left','-30px').css('top','-180px');
+	$('#arrow_down_btn').css('left','-25px').css('top','80px');
+	$('#arrow_right_btn').css('left','45px').css('top','75px');
+	$('#arrow_up_btn').css('left','55px').css('top','40px');
+	$('#arrow_left_btn').css('left','-30px').css('top','30px');
 	
 	// Set land selection position
-	$('#land_down_btn').css('left','-30px').css('top','-168px');
-	$('#land_right_btn').css('left','33px').css('top','-232px');
-	$('#land_up_btn').css('left','30px').css('top','-329px');
-	$('#land_left_btn').css('left','-32px').css('top','-393px');
+	$('#land_down_btn').css('left','-32px').css('top','64px');
+	$('#land_right_btn').css('left','32px').css('top','64px');
+	$('#land_up_btn').css('left','32px').css('top','32px');
+	$('#land_left_btn').css('left','-32px').css('top','32px');
 	
 	// Set bubble position
-	$('#bubble_yes_btn').css('left','-50px').css('top','-500px');
-	$('#bubble_no_btn').css('left','50px').css('top','-565px');
+	$('#bubble_yes_btn').css('left','-50px').css('top','0px');
+	$('#bubble_no_btn').css('left','50px').css('top','0px');
+	
 	
 	// Set intersection button click
 	$('#arrow_down_btn').click(function() {
@@ -125,7 +134,7 @@ $(document).ready(function() {
 		$('#arrow_right_btn').css('visibility','hidden');
 		$('#arrow_down_btn').css('visibility','hidden');
 		$('#arrow_left_btn').css('visibility','hidden');
-		
+			
 		// Hide land selection
 		$('#land_up_btn').css('visibility','hidden');
 		$('#land_right_btn').css('visibility','hidden');
@@ -135,7 +144,7 @@ $(document).ready(function() {
 		// Hide bubble
 		$('#bubble_yes_btn').css("visibility","hidden");
 		$('#bubble_no_btn').css("visibility","hidden");
-		
+
 		while( number > 0 )
 		{
 			// Check Tile
@@ -159,6 +168,9 @@ $(document).ready(function() {
 			
 			number--;
 		}
+		
+		//Save location to DB
+		saveLocation(chartile[0] + '.' + chartile[1]);
 	};
 	
 	var findDirection = function() {
@@ -246,14 +258,7 @@ $(document).ready(function() {
 		
 		// Increment moving count
 		isMoving++;
-		
-		// Debug info
-		console.log("x:"+x+" y:"+y);
-		//console.log("prev_x:"+prevtile[0]+" prev_y:"+prevtile[1]);
-		
-		//Save location to DB
-		saveLocation(x + '.' + y);
-		
+				
 		if ( direction == 1 )
 		{
 			// Up
@@ -270,6 +275,7 @@ $(document).ready(function() {
 				
 				// Check move end
 				moveEndAction();
+				
 			});
 		}
 		else if ( direction == 2 )
@@ -303,7 +309,7 @@ $(document).ready(function() {
 				
 				// Show arrows if necessary
 				showArrows();
-				
+
 				// Check move end
 				moveEndAction();
 			});
@@ -321,11 +327,15 @@ $(document).ready(function() {
 				
 				// Show arrows if necessary
 				showArrows();
-				
+
 				// Check move end
 				moveEndAction();
 			});
 		}
+		
+		// Debug info
+		console.log("x:"+chartile[0]+" y:"+chartile[1]);
+		//console.log("prev_x:"+prevtile[0]+" prev_y:"+prevtile[1]);
 		
 		// Reset direction
 		direction = 0;
@@ -423,7 +433,9 @@ $(document).ready(function() {
 				mapypos -=1;
 				break;
 		};
-		$('div#map').gameMap.moveMap(mapxpos,mapypos);
+		if ((evt.keyCode == 37)||(evt.keyCode == 38)||(evt.keyCode == 39)||(evt.keyCode == 40)) {
+			$('div#map').gameMap.moveMap(mapxpos,mapypos);
+		}
 	});
 	
 	//Profile Container events
@@ -493,12 +505,17 @@ $(document).ready(function() {
 		}
 		//Perform the rotate animation
 		$('#cube')[0].style.webkitTransform = "rotateX("+xAngle+"deg) rotateY("+yAngle+"deg)";
-		$('#console').html("");
-		$('#console').html("Move " + number + " spaces.");		
+		$('#console_text').html("");
+		$('#console_text').html("Move " + number + " spaces.");
 		
 		setTimeout(function() 
 		{
 			moveChar();
 		}, 1000);
-	});	
+	});
+	$('#message_box').keypress(function(event) {
+		if (event.which == 13) {
+			$('#message_sendBtn').click();
+		}
+	});
 });

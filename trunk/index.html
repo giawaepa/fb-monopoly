@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>City Monopoly</title>
 		<link rel="stylesheet" href="css/style.css" type="text/css">
 		<link rel="stylesheet" href="css/map_styles.css" type="text/css">
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
@@ -32,7 +33,11 @@
 				</a>
 				<div id="bubble_dice"><strong>CLICK TO ROLL DICE!</strong></div>
 			</div>
-			<div id="console"></div>
+			<div id="console">
+				<div id="console_text"></div>
+				<input type="text" id="message_box">
+				<button id="message_sendBtn" value="Send" onClick="sendMessage();">Send</button>
+			</div>
 			<div id="userlist_container">
 				<p>Users Online:</p>
 				<div id="userlist"></div>
@@ -48,9 +53,10 @@
 					<a id="land_right_btn" href='#'></a>
 					<a id="land_up_btn" href='#'></a>
 					<a id="land_left_btn" href='#'></a>
-					<a id="bubble_yes_btn" href='#'></a>
-					<a id="bubble_no_btn" href='#'></a>
+					<a id="bubble_yes_btn" href='#'>Buy</a>
+					<a id="bubble_no_btn" href='#'>Ignore</a>
 				</div>
+				<div id="character_other"></div>
 			</div>
 		</section>
 		<section id="interface">
