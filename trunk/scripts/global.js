@@ -53,8 +53,8 @@ $(document).ready(function() {
 	//Generate the map
 	$('div#map').gameMap({map:map,object:objectmap,xpos:10,ypos:0,mapsize:20}); 
 	
-	//Set character initial position	
-	$('#character').css('left','125px').css('top','400px');
+	//Set character container initial position	
+	$('#character').css('left','125px').css('top','365px');
 	
 	// Keep record of char direction
 	var direction = 0;
@@ -67,10 +67,16 @@ $(document).ready(function() {
 	var arrArrows = [0,0,0,0];
 	
 	// Set intersection arrow position
-	$('#arrow_down_btn').css('left','-25px').css('top','70px');
-	$('#arrow_right_btn').css('left','45px').css('top','35px');
-	$('#arrow_up_btn').css('left','55px').css('top','-40px').css({'opacity' : 0.8});
-	$('#arrow_left_btn').css('left','-30px').css('top','-80px');
+	$('#arrow_down_btn').css('left','-25px').css('top','-30px');
+	$('#arrow_right_btn').css('left','45px').css('top','-65px');
+	$('#arrow_up_btn').css('left','55px').css('top','-140px');
+	$('#arrow_left_btn').css('left','-30px').css('top','-180px');
+	
+	// Set land selection position
+	$('#land_down_btn').css('left','-30px').css('top','-168px');
+	$('#land_right_btn').css('left','33px').css('top','-232px');
+	$('#land_up_btn').css('left','30px').css('top','-329px');
+	$('#land_left_btn').css('left','-32px').css('top','-393px');
 	
 	// Set intersection button click
 	$('#arrow_down_btn').click(function() {
@@ -200,7 +206,7 @@ $(document).ready(function() {
 		}
 	};
 	
-	var moveDirection = function() {		
+	var moveDirection = function() {
 		//Get current tile
 		y = chartile[1];
 		x = chartile[0];
@@ -283,6 +289,40 @@ $(document).ready(function() {
 		// Reset direction
 		direction = 0;
 	};
+	
+	var moveEndAction = function() {
+		// Pay Rent?
+		
+		// Purchase land
+	}
+	
+	var buyProperty = function() {
+		//Get current tile
+		y = chartile[1];
+		x = chartile[0];
+		
+		// Check tile
+		var numLand = [0,0,0,0];
+		if ((map[y+1][x] == 0)&&(objectmap[y+1][x] == 0))
+		{
+			numLand[0] = 1;
+		}
+		
+		if ((map[y][x+1] == 0)&&(objectmap[y][x+1] == 0))
+		{
+			numLand[1] = 1;
+		}
+		
+		if ((map[y-1][x] == 0)&&(objectmap[y-1][x] == 0))
+		{
+			numLand[2] = 1;
+		}
+		
+		if ((map[y][x-1] == 0)&&(objectmap[y][x-1] == 0))
+		{
+			numLand[3] = 1;
+		}		
+	}
 	
 	//Content Container Key events
 	$('body').keydown(function(evt) {
