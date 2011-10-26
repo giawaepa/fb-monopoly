@@ -1,5 +1,6 @@
 var chartile = [1,1];
 var prevtile = [0,0];
+var landtile = [-1,-1];
 
 $(document).ready(function() {
 	//Initialize global variables
@@ -78,6 +79,10 @@ $(document).ready(function() {
 	$('#land_up_btn').css('left','30px').css('top','-329px');
 	$('#land_left_btn').css('left','-32px').css('top','-393px');
 	
+	// Set bubble position
+	$('#bubble_yes_btn').css('left','-50px').css('top','-500px');
+	$('#bubble_no_btn').css('left','50px').css('top','-565px');
+	
 	// Set intersection button click
 	$('#arrow_down_btn').click(function() {
 		direction = 3;
@@ -99,6 +104,20 @@ $(document).ready(function() {
 		moveChar();
 	});
 	
+	// Set bubble button click
+	$('#bubble_yes_btn').click(function() {
+		$('#bubble_yes_btn').css("visibility","hidden");
+		$('#bubble_no_btn').css("visibility","hidden");	
+		
+		// Call buy land method
+		buyland();
+	});
+	
+	$('#bubble_no_btn').click(function() {
+		$('#bubble_yes_btn').css("visibility","hidden");
+		$('#bubble_no_btn').css("visibility","hidden");
+	});
+	
 	// Character movement and arrow display functions
 	var moveChar = function() {
 		// Hide arrows when character moving
@@ -112,6 +131,10 @@ $(document).ready(function() {
 		$('#land_right_btn').css('visibility','hidden');
 		$('#land_down_btn').css('visibility','hidden');
 		$('#land_left_btn').css('visibility','hidden');
+		
+		// Hide bubble
+		$('#bubble_yes_btn').css("visibility","hidden");
+		$('#bubble_no_btn').css("visibility","hidden");
 		
 		while( number > 0 )
 		{
@@ -314,6 +337,13 @@ $(document).ready(function() {
 		{
 			// Highlight tile respective to character position
 			hightlightTile();
+			
+			// Show bubble
+			if ( landtile[0] != -1 && landtile[1] != -1 )
+			{
+				$('#bubble_yes_btn').css("visibility","visible");
+				$('#bubble_no_btn').css("visibility","visible");
+			}
 		}
 	}
 	
@@ -321,13 +351,19 @@ $(document).ready(function() {
 		//Get current tile
 		y = chartile[1];
 		x = chartile[0];
-			
+		
+		// Reset land tile
+		landtile[0] = -1;
+		landtile[1] = -1;
+		
 		if ( prevtile[0] == x && prevtile[1] == y-1 )
 		{
 			// Going Up
 			if ( map[y][x+1] != 0 )
 			{
 				$('#land_right_btn').css("visibility","visible");
+				landtile[0] = x+1;
+				landtile[1] = y;
 			}
 		}
 		else if ( prevtile[0] == x && prevtile[1] == y+1 )
@@ -336,6 +372,8 @@ $(document).ready(function() {
 			if ( map[y][x-1] != 0 )
 			{
 				$('#land_left_btn').css("visibility","visible");
+				landtile[0] = x-1;
+				landtile[1] = y;
 			}
 		}
 		else if ( prevtile[0] == x+1 && prevtile[1] == y)
@@ -344,6 +382,8 @@ $(document).ready(function() {
 			if ( map[y+1][x] != 0 )
 			{
 				$('#land_up_btn').css("visibility","visible");
+				landtile[0] = x;
+				landtile[1] = y+1;
 			}
 		}
 		else if ( prevtile[0] == x-1 && prevtile[1] == y)
@@ -352,8 +392,15 @@ $(document).ready(function() {
 			if ( map[y-1][x] != 0 )
 			{
 				$('#land_down_btn').css("visibility","visible");
+				landtile[0] = x;
+				landtile[1] = y-1;
 			}
 		}
+	}
+	
+	// Buy land method
+	var buyland = function() {
+		$("div#map_tile_"+landtile[0]+"_"+landtile[1]).removeClass("tile grass_0").addClass("tile ground_user");
 	}
 	
 	//Content Container Key events

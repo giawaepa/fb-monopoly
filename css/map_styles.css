@@ -39,6 +39,10 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	background-image:url('../images/plain2.png'); 
 	background-position:0px 0px; 
 }
+.ground_user {
+	background-image:url('../images/plain_user.png'); 
+	background-position:0px 0px; 
+}
 .tree_1 {
 	background:transparent url('../images/tree_short.png') top left no-repeat; 
 	background-size: 64px auto;
@@ -184,4 +188,26 @@ div.content div.tile:hover { opacity:0.4; -moz-opacity:0.4; -webkit-opacity:0.4;
 	background: url('../images/select.png') top left no-repeat;
 	background-size: 64px auto;
 	z-index: 7777;
+}
+
+#bubble_yes_btn {
+	visibility:hidden;
+	width: 64px;
+	height: 64px;
+	display: block;
+	position: relative;	
+	background: url('../images/bubble_green.png') top left no-repeat;
+	background-size: 64px auto;
+	z-index: 9999;
+}
+
+#bubble_no_btn {
+	visibility:hidden;
+	width: 64px;
+	height: 64px;
+	display: block;
+	position: relative;	
+	background: url('../images/bubble_red.png') top left no-repeat;
+	background-size: 64px auto;
+	z-index: 9999;
 }
