@@ -79,6 +79,9 @@ function onMessage(m) {
     	//Position character
     	$('#character').css('left',init_left + left).css('top',init_top + top);
     	
+		// Update map position
+		$('div#map').gameMap.moveMap(chartile[0] + 5,chartile[1] - 5);
+		
     	//Hide Loading container
     	$("#loading_container").css("display","none");
     	
