@@ -137,15 +137,18 @@ function onMessage(m) {
     } else if (newMessage.method == "chatMessage") {   	
     	if (newMessage.userid != user_id) {
         	console.log("[STATUS] Update User Message");
+        	
+        	message = decodeURIComponent(newMessage.message);
+        	
 	    	//Add new chat bubble
-        	console.log(newMessage.userid + " said: " + newMessage.message);
+        	console.log(newMessage.userid + " said: " + message);
         	
         	//Add bubble if it's not there. Otherwise change the message.
         	if ($('#bubble_'+newMessage.userid).length == 0) {
-        		$('#char_'+newMessage.userid).prepend('<div id="bubble_'+newMessage.userid+'" class="bubble">'+newMessage.message+'</div>');
+        		$('#char_'+newMessage.userid).prepend('<div id="bubble_'+newMessage.userid+'" class="bubble">'+message+'</div>');
         	} else {
-        		$('#bubble_'+newMessage.userid).html('');
-        		$('#bubble_'+newMessage.userid).html(newMessage.message);
+        		$('#bubble_'+newMessage.userid).remove();
+        		$('#char_'+newMessage.userid).prepend('<div id="bubble_'+newMessage.userid+'" class="bubble">'+message+'</div>');
         	}
 	    	
 			$('#bubble_'+newMessage.userid).animate({
@@ -172,29 +175,29 @@ function sendMessage() {
 	//Add bubble if it's not there. Otherwise change the message.
 	if ($('#bubble_'+user_id).length == 0) {
 		$('#character').prepend('<div id="bubble_'+user_id+'" class="bubble">'+message+'</div>');
-
-		$('#bubble_'+user_id).animate({
-		    opacity: 1,
-		    top: '-=10'
-		  }, 100, function() {
-			  setTimeout(function() {
-				  $('#bubble_'+user_id).animate({
-					    opacity: 0
-				  }, 100);
-				  $('#bubble_'+user_id).remove();
-			  },5000);
-		  });
 	} else {
-		$('#bubble_'+user_id).html('');
-		$('#bubble_'+user_id).html(newMessage.message);
+		$('#bubble_'+user_id).remove();
+		$('#character').prepend('<div id="bubble_'+user_id+'" class="bubble">'+message+'</div>');
 	}
 
+	$('#bubble_'+user_id).animate({
+	    opacity: 1,
+	    top: '-=10'
+	  }, 100, function() {
+		  setTimeout(function() {
+			  $('#bubble_'+user_id).animate({
+				    opacity: 0
+			  }, 100);
+			  $('#bubble_'+user_id).remove();
+		  },5000);
+	  });
+	
 	//Clear the message box
 	$('#message_box').val('');
 	
     //Send message to clients
 	var xhr = new XMLHttpRequest(); 
-    xhr.open('GET', '/client?method=sendMsg&userid='+user_id+'&chatMessage='+message, true);
+    xhr.open('GET', '/client?method=sendMsg&userid='+user_id+'&chatMessage='+encodeURIComponent(message), true);
     xhr.send(null);
 };
 
