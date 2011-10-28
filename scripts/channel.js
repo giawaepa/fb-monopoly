@@ -52,7 +52,12 @@ function onOpened() {
     //Request for list of online users
 	var xhr = new XMLHttpRequest(); 
     xhr.open('GET', '/client?method=updateUsers', true);
-    xhr.send(null);     
+    xhr.send(null); 
+    
+    //Request to get a list of purchased lands
+	var xhr = new XMLHttpRequest(); 
+    xhr.open('GET', '/map?method=getPurchased&userid='+user_id, true);
+    xhr.send(null);
 };
 //Handle events when messages are received on the channel
 function onMessage(m) {
@@ -63,7 +68,7 @@ function onMessage(m) {
     	console.log("[INFO] Location: " + newMessage.location);
     	
     	//Parse Location
-    	end = newMessage.location.indexOf('.');
+    	var end = newMessage.location.indexOf('.');
     	chartile[0] = parseInt(newMessage.location.substring(0,end));
     	chartile[1] = parseInt(newMessage.location.substring(end+1));
     	prevtile[0] = chartile[0];
@@ -95,7 +100,7 @@ function onMessage(m) {
     		//If user ID is not current user then add a new character in
     		if ((newMessage.userlist[i].id != user_id)&&($('#char_'+newMessage.userlist[i].id).length == 0)) {
 	    		//Parse location
-	    	   	end = newMessage.userlist[i].location.indexOf('.');
+	    	   	var end = newMessage.userlist[i].location.indexOf('.');
 	        	var userx = parseInt(newMessage.userlist[i].location.substring(0,end));
 	        	var usery = parseInt(newMessage.userlist[i].location.substring(end+1));
 	    		
@@ -118,7 +123,7 @@ function onMessage(m) {
     	console.log("[STATUS] Update Other User location");
     	
 		//Parse location
-	   	end = newMessage.location.indexOf('.');
+	   	var end = newMessage.location.indexOf('.');
     	var userx = parseInt(newMessage.location.substring(0,end));
     	var usery = parseInt(newMessage.location.substring(end+1));
 		var left = 30*(userx + usery-2) + init_left;
@@ -167,6 +172,30 @@ function onMessage(m) {
 					  $('#bubble_'+newMessage.userid).remove();
 				  },5000);
 			  });
+    	}
+    } else if (newMessage.method == "updatePurchased") {
+    	console.log("[STATUS] Updating purchased tiles...")
+		//Parse location
+	   	var end = newMessage.location.indexOf('.');
+    	var landx = parseInt(newMessage.location.substring(0,end));
+    	var landy = parseInt(newMessage.location.substring(end+1));
+    	var landtype = newMessage.type;
+    	//Change tile
+		if (landtype == '1') {
+			$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_user");
+		}
+    } else if (newMessage.method == "getPurchased") {  
+    	console.log("[STATUS] Getting purchased tiles...")
+    	for (i=0;i<newMessage.maplist.length;i++) {
+    		//Parse location
+    	   	var end = newMessage.maplist[i].location.indexOf('.');
+        	var landx = parseInt(newMessage.maplist[i].location.substring(0,end));
+        	var landy = parseInt(newMessage.maplist[i].location.substring(end+1));
+        	var landtype = newMessage.maplist[i].type;
+        	//Change tile
+    		if (landtype == '1') {
+    			$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_user");
+    		}
     	}
     } else {
     	console.log("[STATUS] Method not handled.");
@@ -219,3 +248,10 @@ function leaveChannel() {
     xhr.open('GET', '/client?method=leave&userid='+user_id, true);
     xhr.send(null);
 };
+
+function updatePurchased(location, type) {
+    //Request to update one item in list of purchased lands
+	var xhr = new XMLHttpRequest(); 
+    xhr.open('GET', '/map?method=updatePurchased&userid='+user_id+'&location='+location+'&type='+type, true);
+    xhr.send(null);
+}
