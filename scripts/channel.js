@@ -57,7 +57,6 @@ function onOpened() {
 //Handle events when messages are received on the channel
 function onMessage(m) {
     newMessage = JSON.parse(m.data);
-    //console.log("[STATUS] Received new message...");
     if (newMessage.method == "updateUserLocation") {
     	//Debug info
     	console.log("[STATUS] Updating User location...");
@@ -79,18 +78,16 @@ function onMessage(m) {
     	//Position character
     	$('#character').css('left',init_left + left).css('top',init_top + top);
     	
-		// Update map position
-		$('div#map').gameMap.moveMap(chartile[0] + 5,chartile[1] - 5);
-		
-    	//Hide Loading container
-    	$("#loading_container").css("display","none");
-    	
+		// Update map location
+		mapxpos = chartile[0] + 5;
+		mapypos = chartile[1] - 5;
+    	$('div#map').gameMap.moveMap(mapxpos,mapypos);    	
     } else if (newMessage.method == "updateUsers") {
     	console.log("[STATUS] Updating User List...");
-    	var list = "";
+    	$("#loading_container").html("");
+    	$("#loading_container").html("Updating User List...");
     	
-    	//Create container for all other characters
-    	//$('<div id="character_other" style="position:relative;top:0px;left0px;"></div>').prependTo("#map");
+    	var list = "";
     	
     	for (i=0;i<newMessage.userlist.length;i++) {
     		list += newMessage.userlist[i].name + "<br/>";
@@ -110,8 +107,13 @@ function onMessage(m) {
 	    		$(el).appendTo('#character_other');
     		}
     	}
+    	//Attach list on screen
     	console.log("[INFO] List: " + list);
     	$("#userlist").html(list);
+    	
+    	//Hide Loading container
+    	$("#loading_container").css("display","none");
+    	
     } else if (newMessage.method == "updateOneUser") {
     	console.log("[STATUS] Update Other User location");
     	

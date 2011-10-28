@@ -33,6 +33,10 @@ FB.getLoginStatus(function(response) {
 	} else if (response.status == "unknown") {
 	} else if (response.status == "connected") {
 		console.log('[STATUS] Welcome!  Fetching your information.... ');
+		
+		$("#loading_container").html("");
+		$("#loading_container").html("Signing in .. Fetching your information...");
+		
 		access_token = response.authResponse.accessToken;
 		user_id = response.authResponse.userID;
 	  	console.log('[INFO] access_token = ' + access_token);

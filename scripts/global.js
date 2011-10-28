@@ -9,13 +9,13 @@ var prevtile = [0,0];
 var landtile = [-1,-1];
 var init_top = 370;
 var init_left = 125; 
+var mapxpos = 10, mapypos = 10;
 
 $(document).ready(function() {
 	//Initialize global variables
 	var xAngle = 0, yAngle = 0;
 	var dice = false;
-	var mapxpos = 10, mapypos = 10;
-	
+
 	//Map
 	var map = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
 				[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
@@ -58,6 +58,10 @@ $(document).ready(function() {
 					[0,0,5,5,5,5,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 					[4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 					[4,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]];
+	
+	//Loading Container
+	//$("#loading_container").html("");
+	//$("#loading_container").html("Welcome to City Monopoly!");
 	
 	//Generate the map
 	$('div#map').gameMap({map:map,object:objectmap,xpos:10,ypos:0,mapsize:20}); 
@@ -518,4 +522,22 @@ $(document).ready(function() {
 			$('#message_sendBtn').click();
 		}
 	});
+	
+	//character animation
+	setInterval(function() {
+		if (isMoving == 0) {
+			bounce(3);
+		}
+	},10000);
+	
+	var bounce = function (i) {
+		$('#char_image').animate({top: '-='+(3*i)+'px'},i*100, 
+		function() {
+			$('#char_image').animate({top: '+='+(3*i)+'px'},i*100);
+			i--;
+			if (i > 0) {
+				bounce(i);
+			}
+		});
+	};
 });
