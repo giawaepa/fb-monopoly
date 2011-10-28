@@ -414,7 +414,9 @@ $(document).ready(function() {
 	
 	// Buy land method
 	var buyland = function() {
-		$("div#map_tile_"+landtile[0]+"_"+landtile[1]).removeClass("tile grass_0").addClass("tile ground_user");
+		updatePurchased(landtile[0]+'.'+landtile[1], '1');
+		
+		//$("div#map_tile_"+landtile[0]+"_"+landtile[1]).removeClass("tile grass_0").addClass("tile ground_user");
 	}
 	
 	//Content Container Key events
