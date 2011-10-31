@@ -40,6 +40,10 @@ div.content div.tile:hover {
 	background-image:url('../images/plain_user.png'); 
 	background-position:0px 0px; 
 }
+.ground_otheruser {
+	background-image:url('../images/plain_otheruser.png'); 
+	background-position:0px 0px;
+}
 .tree_1 {
 	background:transparent url('../images/tree_short.png') top left no-repeat; 
 	background-size: 64px auto;
