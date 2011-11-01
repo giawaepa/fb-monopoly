@@ -187,10 +187,12 @@ function onMessage(m) {
 			if ( landuser == user_id )
 			{
 				$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_user");
+				map[landy][landx] = 2;
 			}
 			else
 			{
 				$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_otheruser");
+				map[landy][landx] = 3;
 			}
 		}
     } else if (newMessage.method == "getPurchased") {  
@@ -201,17 +203,19 @@ function onMessage(m) {
         	var landx = parseInt(newMessage.maplist[i].location.substring(0,end));
         	var landy = parseInt(newMessage.maplist[i].location.substring(end+1));
         	var landtype = newMessage.maplist[i].type;
-			var landuser = newMessage.maplist[i].userid;		
+			var landuser = newMessage.maplist[i].userid;			
 			
         	//Change tile
     		if (landtype == '1') {
 				if ( landuser == user_id )
 				{
 					$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_user");
+					map[landy][landx] = 2;
 				}
 				else
 				{
 					$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_otheruser");
+					map[landy][landx] = 3;
 				}
 			}
     	}
