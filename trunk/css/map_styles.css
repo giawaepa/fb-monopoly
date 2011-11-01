@@ -224,3 +224,65 @@ div.content div.tile:hover {
 	color: #B40404;
 	border-radius: 20px 20px 20px 0px;
 }
+
+#bubble_upgrade_btn {
+	visibility:hidden;
+	width: 20px;
+	height: 20px;
+	display: block;
+	position: absolute;	
+	background: url('../images/bubble_green.png') top left no-repeat; 
+	background-size: 64px auto;
+	/* background-color: #ACFA58; */
+	z-index: 9999;
+	text-decoration: none;
+	color: #04B404;
+	padding: 20px;
+	border-radius: 25px 25px 0px 25px;
+}
+#bubble_noupgrade_btn {
+	visibility:hidden;
+	width: 64px;
+	height: 64px;
+	display: block;
+	position: absolute;	
+	background: url('../images/bubble_red.png') top left no-repeat;
+	background-size: 64px auto;
+	/* background-color: #F5A9A9; */
+	z-index: 9999;
+	text-decoration: none;
+	padding: 20px 10px;
+	color: #B40404;
+	border-radius: 20px 20px 20px 0px;
+}
+
+#bubble_pay_btn {
+	visibility:hidden;
+	width: 20px;
+	height: 20px;
+	display: block;
+	position: absolute;	
+	background: url('../images/bubble_green.png') top left no-repeat; 
+	background-size: 64px auto;
+	/* background-color: #ACFA58; */
+	z-index: 9999;
+	text-decoration: none;
+	color: #04B404;
+	padding: 20px;
+	border-radius: 25px 25px 0px 25px;
+}
+#bubble_nopay_btn {
+	visibility:hidden;
+	width: 64px;
+	height: 64px;
+	display: block;
+	position: absolute;	
+	background: url('../images/bubble_red.png') top left no-repeat;
+	background-size: 64px auto;
+	/* background-color: #F5A9A9; */
+	z-index: 9999;
+	text-decoration: none;
+	padding: 20px 10px;
+	color: #B40404;
+	border-radius: 20px 20px 20px 0px;
+}
