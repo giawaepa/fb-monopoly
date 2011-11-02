@@ -42,14 +42,15 @@ public class ClientServlet extends HttpServlet {
     log.info("METHOD = " + method);
     
     //MonopolyClient loop
-	if (method.equals("getUserLocation")) {	 
+	if (method.equals("getUserInfo")) {	 
 		String userId = req.getParameter("userid");
 		for (MonopolyClient mclient : mids) {
     		if (mclient.getKey().equals(userId)) {
     			JSONObject jsonMessage = new JSONObject();
     			try {
-    				jsonMessage.put("method", "updateUserLocation");
+    				jsonMessage.put("method", "updateUserInfo");
     				jsonMessage.put("location", mclient.getLocation());
+    				jsonMessage.put("money", mclient.getMoney());
     				channelService.sendMessage(new ChannelMessage(userId, jsonMessage.toString()));
     				log.info("MESSAGE SENT: " + jsonMessage.toString());
     			} catch (JSONException e) {
