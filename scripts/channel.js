@@ -3,6 +3,9 @@
  * Description: Handles GAE channel connections: getToken, openChannel, onOpen, onMessage, sendMessage
  */
 
+//Global Variables
+var money = "";
+
 //Initialization - Get token and open channel
 function initialize() {
 	var token = getToken();
@@ -46,7 +49,7 @@ function onOpened() {
 	
 	//Request for current location of user
 	var xhr = new XMLHttpRequest(); 
-    xhr.open('GET', '/client?method=getUserLocation&userid='+user_id, true);
+    xhr.open('GET', '/client?method=getUserInfo&userid='+user_id, true);
     xhr.send(null);  
     
     //Request for list of online users
@@ -62,10 +65,14 @@ function onOpened() {
 //Handle events when messages are received on the channel
 function onMessage(m) {
     newMessage = JSON.parse(m.data);
-    if (newMessage.method == "updateUserLocation") {
+    if (newMessage.method == "updateUserInfo") {
     	//Debug info
     	console.log("[STATUS] Updating User location...");
     	console.log("[INFO] Location: " + newMessage.location);
+    	
+    	//Get User Money
+    	money = newMessage.money;
+    	$('#txt_profile').append('Cash: '+money);
     	
     	//Parse Location
     	var end = newMessage.location.indexOf('.');
