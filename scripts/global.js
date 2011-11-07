@@ -60,9 +60,8 @@ $(document).ready(function() {
 	var xAngle = 0, yAngle = 0;
 	var dice = false;	
 	
-	//Loading Container
-	//$("#loading_container").html("");
-	//$("#loading_container").html("Welcome to City Monopoly!");
+	//Loading container
+	$('#pageProgressBar_img').css('width','20px');
 	
 	//Generate the map
 	$('div#map').gameMap({map:map,object:objectmap,xpos:mapxpos,ypos:mapypos,mapsize:20}); 
