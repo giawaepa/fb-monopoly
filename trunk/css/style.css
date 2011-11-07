@@ -34,10 +34,27 @@ div#loading_container {
     font-size: x-large;
     color: black;
     text-align: center;    
-    padding-top: 180px;
+    padding-top: 160px;
     opacity:0.8;
 	filter:alpha(opacity=0.8);
-
+}
+div#pageProgressBar {
+	margin-top: 10px;
+	margin-left: 280px;
+	width: 200px;
+	height: 15px;
+	border: 1px solid black;
+	border-radius: 5px;	
+}
+div#pageProgressBar_img {
+	background-image:url('../images/progress/loading.png');	
+	background-repeat:repeat-x;
+	background-size: auto 15px;
+	background-position: inherit;
+	width: 150px;
+	height: 15px;
+	position:relative;
+	border-radius: 3px;	
 }
 
 /* Profile Container */

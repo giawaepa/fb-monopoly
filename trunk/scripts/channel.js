@@ -19,8 +19,10 @@ function initialize() {
 };
 //Request a token from the server
 function getToken(){
-	$("#loading_container").html("");
-	$("#loading_container").html("Connecting to Game Channel...");
+	$("#loading_text").html("");
+	$("#loading_text").html("Connecting to Game Channel...");
+	updateProgressBar(50);
+	
 	var xhr = new XMLHttpRequest(); 
 	var url = '/getToken?userid='+user_id+'&username='+encodeURIComponent(user_name);
 	console.log("[STATUS] Requesting token...");
@@ -44,8 +46,9 @@ function openChannel(token){
 //Handle events after channel is opened
 function onOpened() {
 	console.log("[STATUS] Channel established.");
-	$("#loading_container").html("");
-	$("#loading_container").html("Game Channel connected...");
+	$("#loading_text").html("");
+	$("#loading_text").html("Game Channel connected...");
+	updateProgressBar(60);
 	
 	//Request for current location of user
 	var xhr = new XMLHttpRequest(); 
@@ -96,8 +99,10 @@ function onMessage(m) {
     	$('div#map').gameMap.moveMap(mapxpos,mapypos);    	
     } else if (newMessage.method == "updateUsers") {
     	console.log("[STATUS] Updating User List...");
-    	$("#loading_container").html("");
-    	$("#loading_container").html("Updating User List...");
+    	
+    	$("#loading_text").html("");
+    	$("#loading_text").html("Updating User List...");
+    	updateProgressBar(80);
     	
     	var list = "";
     	
@@ -122,10 +127,7 @@ function onMessage(m) {
     	//Attach list on screen
     	console.log("[INFO] List: " + list);
     	$("#userlist").html(list);
-    	
-    	//Hide Loading container
-    	$("#loading_container").css("display","none");
-    	
+    	    	
     } else if (newMessage.method == "updateOneUser") {
     	console.log("[STATUS] Update Other User location");
     	
@@ -182,6 +184,7 @@ function onMessage(m) {
     	}
     } else if (newMessage.method == "updatePurchased") {
     	console.log("[STATUS] Updating purchased tiles...")
+   	
 		//Parse location
 	   	var end = newMessage.location.indexOf('.');
     	var landx = parseInt(newMessage.location.substring(0,end));
@@ -202,8 +205,15 @@ function onMessage(m) {
 				map[landy][landx] = 3;
 			}
 		}
+
+
     } else if (newMessage.method == "getPurchased") {  
     	console.log("[STATUS] Getting purchased tiles...")
+    	
+    	$("#loading_text").html("");
+    	$("#loading_text").html("Updating Purchased Lands...");
+    	updateProgressBar(100);
+    	
     	for (i=0;i<newMessage.maplist.length;i++) {
     		//Parse location
     	   	var end = newMessage.maplist[i].location.indexOf('.');
@@ -225,7 +235,7 @@ function onMessage(m) {
 					map[landy][landx] = 3;
 				}
 			}
-    	}
+    	}   	
     } else {
     	console.log("[STATUS] Method not handled.");
     }

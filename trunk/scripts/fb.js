@@ -34,9 +34,10 @@ FB.getLoginStatus(function(response) {
 	} else if (response.status == "connected") {
 		console.log('[STATUS] Welcome!  Fetching your information.... ');
 		
-		$("#loading_container").html("");
-		$("#loading_container").html("Signing in .. Fetching your information...");
-		
+		updateProgressBar(20);
+		$("#loading_text").html("");
+		$("#loading_text").html("Signing in .. Fetching your information...");
+
 		access_token = response.authResponse.accessToken;
 		user_id = response.authResponse.userID;
 	  	console.log('[INFO] access_token = ' + access_token);
@@ -54,8 +55,11 @@ FB.Event.subscribe('auth.logout', function(response) {
 });
 FB.Event.subscribe('auth.login', function(response) {
 	console.log('[STATUS] Welcome!  Fetching your information.... ');
-	$("#loading_container").html("");
-	$("#loading_container").html("Signing in .. Fetching your information...");
+	
+	updateProgressBar(20);
+	$("#loading_text").html("");
+	$("#loading_text").html("Signing in .. Fetching your information...");
+	
 	access_token = response.authResponse.accessToken;
 	user_id = response.authResponse.userID;
   	console.log('access_token = ' + access_token);
@@ -70,8 +74,11 @@ function displayGeneralInfo() {
 	
     FB.api('/me', function(response) {
 	       console.log('[STATUS] Good to see you, ' + response.name + '.');
-	       $("#loading_container").html("");
-	       $("#loading_container").html("Good to see you, " + response.name);
+	       
+	       updateProgressBar(40);
+	       $("#loading_text").html("");
+	       $("#loading_text").html("Good to see you, " + response.name);
+	      
 	       user_name = response.name;
 	       $("#img_profile").append('<img src="https://graph.facebook.com/' + response.id + '/picture" />');
 	       $("#txt_profile").append('Name: ' + response.name + '<br/>'+'Gender: ' + response.gender + '<br/>');
