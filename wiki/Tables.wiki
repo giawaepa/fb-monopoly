@@ -1,4 +1,4 @@
-#This page keeps track of the different tables and fields it has
+This page keeps track of the different tables and fields it has
 
 = System Tables =
 
