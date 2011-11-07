@@ -1,9 +1,7 @@
-#To Do List.
+= To Do List =
 
-= Introduction =
-
-To Do List.
-
+* Add more characters and buildings
+* Add land purchasing functionality involving cash
 
 = Details =
 
