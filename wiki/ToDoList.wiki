@@ -2,6 +2,7 @@
 
   * Add more characters and buildings
   * Add land purchasing functionality involving cash
+  * Add in rent/re-purchasing functionality
   * Fix issues
     * Z-index issues
     * FF dice issues
