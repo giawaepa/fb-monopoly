@@ -153,14 +153,19 @@ function onMessage(m) {
         xhr.open('GET', '/client?method=updateUsers', true);
         xhr.send(null); 
     	
-    } else if (newMessage.method == "chatMessage") {   	
+    } else if (newMessage.method == "chatMessage") { 
+    	
+    	//Add new chat bubble
+    	console.log(newMessage.userid + " said: " + message);
+    	
+    	//Add message to chat container
+    	$('#chat_container').append(newMessage.userid + " said: " + message + "<br />");
+    	$('#chat_container').animate({ scrollTop: $("#chat_container").prop("scrollHeight") }, 3000);
+    	
     	if (newMessage.userid != user_id) {
         	console.log("[STATUS] Update User Message");
         	
         	message = decodeURIComponent(newMessage.message);
-        	
-	    	//Add new chat bubble
-        	console.log(newMessage.userid + " said: " + message);
         	
         	//Add bubble if it's not there. Otherwise change the message.
         	if ($('#bubble_'+newMessage.userid).length == 0) {
