@@ -75,7 +75,8 @@ function onMessage(m) {
     	
     	//Get User Money
     	money = newMessage.money;
-    	$('#txt_profile').append('Cash: '+money);
+    	//$('#txt_profile').append('Cash: '+money);
+    	$("#profile_money").html(money);
     	
     	//Parse Location
     	var end = newMessage.location.indexOf('.');
@@ -203,6 +204,9 @@ function onMessage(m) {
 			{
 				$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_user");
 				map[landy][landx] = 2;
+				
+				$('#chat_container').append(newMessage.userid + " bought a piece of land<br />");
+		    	$('#chat_container').animate({ scrollTop: $("#chat_container").prop("scrollHeight") }, 3000);
 			}
 			else
 			{
@@ -297,5 +301,18 @@ function updatePurchased(location, type) {
     //Request to update one item in list of purchased lands
 	var xhr = new XMLHttpRequest(); 
     xhr.open('GET', '/map?method=updatePurchased&userid='+user_id+'&location='+location+'&type='+type, true);
+    xhr.send(null);
+}
+function updateMoney() {
+    //Request to update one item in list of purchased lands
+	var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+    	if (xhr.readyState == 4 && xhr.status == 200) {
+    		return false;
+    	} else {
+    		return true;
+    	}
+    };
+    xhr.open('GET', '/client?method=updateMoney&userid='+user_id+'&money='+money, true);
     xhr.send(null);
 }

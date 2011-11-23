@@ -23,14 +23,33 @@ FB.init({
 
 //Checks login state on page load
 FB.getLoginStatus(function(response) {
-	if (response.status == "not_authorized") {
+	if (response.status == "not_authorized") {	
+		/*
 	  	FB.ui({
 	  	    client_id: app_id,
 	  	    method: 'oauth',
 	  	    redirect_uri: app_domain + '/callback.html',
 	  	    response_type: 'token'
 	  	});
+	  	*/
+	  FB.login(function(response) {
+		    if(response.status == 'connected'){
+		      authResponse(response);
+		    }else{
+		      //user canceled login so show like us prompt
+		    }
+		  }, {scope: ''});
+		  
+		//window.location = "https://www.facebook.com/dialog/oauth/?client_id="+app_id+"&redirect_uri="+app_domain+"&response_type=token";
+		
 	} else if (response.status == "unknown") {
+		  FB.login(function(response) {
+			    if(response.status == 'connected'){
+			      authResponse(response);
+			    }else{
+			      //user canceled login so show like us prompt
+			    }
+			  }, {scope: 'user_likes'});
 	} else if (response.status == "connected") {
 		console.log('[STATUS] Welcome!  Fetching your information.... ');
 		
@@ -81,7 +100,9 @@ function displayGeneralInfo() {
 	      
 	       user_name = response.name;
 	       $("#img_profile").append('<img src="https://graph.facebook.com/' + response.id + '/picture" />');
-	       $("#txt_profile").append('Name: ' + response.name + '<br/>'+'Gender: ' + response.gender + '<br/>');
+	       //$("#txt_profile").append('Name: ' + response.name + '<br/>'+'Gender: ' + response.gender + '<br/>');
+	       $("#profile_name").html(response.name);
+	       $("#profile_gender").html(response.gender);      
 	       
 	       //Connect to channel
 	       initialize();
