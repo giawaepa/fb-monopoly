@@ -160,7 +160,15 @@ public class ClientServlet extends HttpServlet {
 	    	channelService.sendMessage(new ChannelMessage(n.getKey(), jsonMessage.toString()));
 	    	log.info("MESSAGE SENT: " + jsonMessage.toString());
 		}    	
-    } else {
+    } else if (method.equals("updateMoney")) {
+    	String userid = req.getParameter("userid");
+    	String money = req.getParameter("money");
+    	for (MonopolyClient mclient : mids) {
+    		if (mclient.getKey().equals(userid)) {
+    			mclient.setMoney(money);
+    		}
+    	}
+	} else {
     	//If no method to handle. Do nothing.
     }
 	

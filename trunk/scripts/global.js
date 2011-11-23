@@ -406,8 +406,26 @@ $(document).ready(function() {
 				{
 					// If land is other user land
 					// pay rent or re-purchase					
-					$('#bubble_pay_btn').css("visibility","visible");
-					$('#bubble_nopay_btn').css("visibility","visible");
+					//$('#bubble_pay_btn').css("visibility","visible");
+					//$('#bubble_nopay_btn').css("visibility","visible");
+					
+					//Subtract rent
+					money = money - 100;
+					
+					$('#popup_container').html("You landed on somebody's property. You have to pay "+ money +" rent!");
+					$('#popup_container').animate({
+					    opacity: 1
+					  }, 100, function() {
+						  setTimeout(function() {
+							  $('popup_container').animate({
+								    opacity: 0
+							  }, 100);
+							  //$('popup_container').remove();
+						  },5000);
+					  });
+					
+					$("#profile_money").html(money);
+					
 					console.log("[LAND] pay or re-purchase?");
 				}				
 			}
@@ -467,7 +485,12 @@ $(document).ready(function() {
 	
 	// Buy land method
 	var buyland = function() {		
-		updatePurchased(landtile[0]+'.'+landtile[1], '1');		
+		if (money > 100) {
+			money = money - 100;
+			$("#profile_money").html(money);
+			updateMoney();
+			updatePurchased(landtile[0]+'.'+landtile[1], '1');
+		}
 	}
 	
 	//Content Container Key events
@@ -576,6 +599,7 @@ $(document).ready(function() {
 		}
 	});
 	
+	/*
 	//character animation
 	setInterval(function() {
 		if (isMoving == 0) {
@@ -592,5 +616,5 @@ $(document).ready(function() {
 				bounce(i);
 			}
 		});
-	};
+	};*/
 });

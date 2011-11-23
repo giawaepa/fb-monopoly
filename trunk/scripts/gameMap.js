@@ -142,17 +142,18 @@
 			}
 			
 			if (config.object[y][x] == 1) {
-				objectgraphic = "npc_0";
-			} else if (config.object[y][x] == 2) {
-				objectgraphic = "npc_1";
-			} else if (config.object[y][x] == 3) {
 				objectgraphic = "tree_1";
-			} else if (config.object[y][x] == 4) {
+			} else if (config.object[y][x] == 2) {
 				objectgraphic = "tree_2";
-			} else if (config.object[y][x] == 5) {
+			} else if (config.object[y][x] == 3) {
 				objectgraphic = "house_1";
+			} else if (config.object[y][x] == 4) {
+				objectgraphic = "fountain_1";
+			} else if (config.object[y][x] == 5) {
+				objectgraphic = "cityhall_1";
+			} else if (config.object[y][x] == 6) {
+				objectgraphic = "cityhall_2";
 			}
-			
 			//Update index
 			//tileindex--;
 			//objectindex--;

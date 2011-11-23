@@ -1,19 +1,22 @@
 body {
 	background-color: white;
 	overflow: hidden;
-	font-family:Sans-serif; 
+	font-family:Sans-serif;
+	padding-left: 10%; 
 }
 
 /* Header Container */
 section#header_container {
 	margin-top: 20px;
-	height: 30px;
-	width: 750px;
-	text-align: right;
+	margin-left: 441px;
+	height: 20px;
+	width: 310px;
+	padding: 5px;
+	border-radius: 5px 5px 0px 0px;	
 }
 section#header_container div {
-	float: right;
 	margin-left: 5px;
+	float: right;.
 }
 section#header_container:after {
     content: ".";
@@ -28,11 +31,11 @@ div#loading_container {
 	position: absolute;
 	display: block;
 	width: 761px;
-	height: 401px;
-	background-color: white;
+	height: 241px;
+	background-color: black;
 	z-index: 10000;
     font-size: x-large;
-    color: black;
+    color: white;
     text-align: center;    
     padding-top: 160px;
     opacity:0.8;
@@ -72,6 +75,9 @@ div#profile_container {
 	filter:alpha(opacity=0.8);
 	color: white;
 }
+div#profile_container span {
+	padding: 10px;	
+}
 div#profile_container div {
 	float: left;
 	margin-left: 5px;
@@ -86,7 +92,7 @@ div#profile_container:after {
 
 /* Interface Container */
 section#interface {	
-	display: block;
+	display: none;
 	background-color: #ccc;
 	width: 760px;
 	height: 100px;
@@ -107,6 +113,25 @@ section#interface {
     height: 0;
     clear: both;
     visibility: hidden;
+}
+
+/* Popup Container */
+#popup_container {
+	position: absolute;
+	display: none;
+	width: 300px;
+	height: 50px;
+	margin-top: 150px;
+	margin-left: 220px;
+	padding: 20px 5px 0px 5px;
+	background-color: black;
+	z-index: 9998;
+	font-size: small;
+	opacity:1;
+	filter:alpha(opacity=1);
+	border-radius: 5px;
+	text-align: center;
+	color: white;
 }
 
 /* Chat Container */
@@ -148,32 +173,32 @@ section#interface {
 #console #message_box {
 	position: absolute;
 	margin-top: 4px;
-	margin-left: 250px;
+	margin-left: 245px;
 	width: 340px;
 	z-index: 9998;
 }
 #console #message_sendBtn {
 	position: absolute;
 	margin-top: 4px;
-	margin-left: 600px;
+	margin-left: 595px;
 	z-index: 9998;
 }
 
 /* User List Container */
 #userlist_container {
 	position: absolute;
-	margin-left: 0px;
-	margin-top: 80px;
+	margin-left: 1px;
+	margin-top: 71px;
 	padding-left: 5px;
 	width: 100px;
-	height: 200px;
-	background-color: black;
-	color: white;
+	height: 300px;
+	background-color: white;
+	color: black;
 	z-index: 9998;
     font-size: small;
     opacity:0.8;
 	filter:alpha(opacity=0.8);
-	border-radius: 0px 40px 40px 0px;
+	border-radius: 0px 0px 0px 0px;
 }	
 
 /* User Bubble */
