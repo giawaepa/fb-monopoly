@@ -18,7 +18,22 @@ var updateProgressBar = function(percentage) {
 };
 
 //Popup functions
-var loadPopup = function() {
+var loadPopup = function(type) {
+	if (type == "ok") {
+		//$("#popup_popup").prepend('<a class="popup_button" id="popup_close" href="#">x</a>');
+		$("#popup_popup").append('<a class="popup_button" href="#">&nbsp&nbspOK&nbsp&nbsp</a>');
+	} else if (type == "upgrade") {
+		$("#popup_popup").append('<a class="popup_button" href="#">Upgrade</a>&nbsp&nbsp');
+		$("#popup_popup").append('<a class="popup_button" href="#">&nbsp&nbspNo&nbsp&nbsp</a>');
+	} else if (type == "buy") {
+		$("#popup_popup").append('<a class="popup_button" href="#">&nbsp&nbspYes&nbsp&nbsp</a>&nbsp&nbsp');
+		$("#popup_popup").append('<a class="popup_button" href="#">&nbsp&nbspNo&nbsp&nbsp</a>');
+	}
+	//Reset button functions
+	$('.popup_button').click(function() {
+		disablePopup();
+	});
+	
 	if (popupStatus == 0) {
 		$("#popup_container").css("display","block");
 		$("#popup_container").animate({
@@ -35,6 +50,7 @@ var loadPopup = function() {
 	}
 };
 var disablePopup = function() {
+	$(".popup_button").remove();
 	if (popupStatus == 1) {
 		$("#popup_container").animate({
 			opacity: 0

@@ -64,6 +64,9 @@ $(document).ready(function() {
 	var xAngle = 0, yAngle = 0;
 	var dice = false;	
 	
+	//Load Pop up (for testing)
+	//setTimeout("loadPopup('ok');",1000);
+	
 	//Loading container
 	$('#pageProgressBar_img').css('width','20px');
 	
@@ -167,7 +170,7 @@ $(document).ready(function() {
 		buyland();
 	});
 	
-	$('#popup_button').click(function() {
+	$('.popup_button').click(function() {
 		disablePopup();
 	});
 	
@@ -406,8 +409,14 @@ $(document).ready(function() {
 				{
 					// If land is user land
 					// upgrade
-					$('#bubble_upgrade_btn').css("visibility","visible");
-					$('#bubble_noupgrade_btn').css("visibility","visible");
+					//$('#bubble_upgrade_btn').css("visibility","visible");
+					//$('#bubble_noupgrade_btn').css("visibility","visible");
+					
+					//Open pop up
+					$('#popup_header').html("Upgrade");
+					$('#popup_text').html("Do you want to upgrade your property?");
+					loadPopup('upgrade');
+					
 					console.log("[LAND] upgrade?");
 				}
 				else if ( map[landtile[1]][landtile[0]] == 3)
@@ -423,7 +432,7 @@ $(document).ready(function() {
 					//Open pop up
 					$('#popup_header').html("Update");
 					$('#popup_text').html("You landed on somebody's property. You have to pay "+ rent +" rent!");
-					loadPopup();
+					loadPopup('ok');
 					
 					$("#profile_money").html(money);
 					updateMoney();
