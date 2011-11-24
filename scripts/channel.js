@@ -243,7 +243,7 @@ function onMessage(m) {
 			}
     	}
     	//Load popup
-    	setTimeout("loadPopup();",3000);
+    	setTimeout("loadPopup('ok');",3000);
     } else {
     	console.log("[STATUS] Method not handled.");
     }

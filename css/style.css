@@ -143,22 +143,25 @@ section#interface {
 	border-radius: 5px;
 	text-align: center;
 	color: black;
+	padding: 0px 0px 10px 0px;
 }
 #popup_container h3 {
 	margin-top: 5px;
 	text-transform:uppercase;
 }
-#popup_button {
-	position: absolute;
-	margin-top: 4px;
-	margin-left: 280px;
+.popup_button {
 	padding: 0px 3px 1px 3px;
 	color: black;
 	border: 1px solid black;
-	font-size: x-small;
+	font-size: small;
 	border-radius: 2px;
 }
-#popup_button:hover {
+#popup_close {
+	position: absolute;
+	margin-top: 4px;
+	margin-left: 280px;
+}
+.popup_button:hover {
 	background-color: black;
 	color: white;
 }
