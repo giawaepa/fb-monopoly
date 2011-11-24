@@ -9,7 +9,11 @@ var prevtile = [0,0];
 var landtile = [-1,-1];
 var init_top = 370;
 var init_left = 125; 
-var mapxpos = 10, mapypos = 0;
+var mapxpos = 10, mapypos = -5;
+var offset = 10;
+var money = "";
+var popupStatus = 0;
+var rent = 100; 
 
 //Map
 var map = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -163,6 +167,10 @@ $(document).ready(function() {
 		buyland();
 	});
 	
+	$('#popup_button').click(function() {
+		disablePopup();
+	});
+	
 	// Character movement and arrow display functions
 	var moveChar = function() {
 		// Hide arrows when character moving
@@ -198,8 +206,8 @@ $(document).ready(function() {
 			moveDirection();
 			
 			// Update map location
-			mapxpos = chartile[0] + 5;
-			mapypos = chartile[1] - 5;
+			mapxpos = chartile[0] + offset;
+			mapypos = chartile[1] - offset;
 			$('div#map').gameMap.moveMap(mapxpos,mapypos);
 			
 			number--;
@@ -410,21 +418,15 @@ $(document).ready(function() {
 					//$('#bubble_nopay_btn').css("visibility","visible");
 					
 					//Subtract rent
-					money = money - 100;
+					money = money - rent;
 					
-					$('#popup_container').html("You landed on somebody's property. You have to pay "+ money +" rent!");
-					$('#popup_container').animate({
-					    opacity: 1
-					  }, 100, function() {
-						  setTimeout(function() {
-							  $('popup_container').animate({
-								    opacity: 0
-							  }, 100);
-							  //$('popup_container').remove();
-						  },5000);
-					  });
+					//Open pop up
+					$('#popup_header').html("Update");
+					$('#popup_text').html("You landed on somebody's property. You have to pay "+ rent +" rent!");
+					loadPopup();
 					
 					$("#profile_money").html(money);
+					updateMoney();
 					
 					console.log("[LAND] pay or re-purchase?");
 				}				

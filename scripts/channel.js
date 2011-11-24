@@ -3,9 +3,6 @@
  * Description: Handles GAE channel connections: getToken, openChannel, onOpen, onMessage, sendMessage
  */
 
-//Global Variables
-var money = "";
-
 //Initialization - Get token and open channel
 function initialize() {
 	var token = getToken();
@@ -95,8 +92,8 @@ function onMessage(m) {
     	$('#character').css('left',init_left + left).css('top',init_top + top);
     	
 		// Update map location
-		mapxpos = chartile[0] + 5;
-		mapypos = chartile[1] - 5;
+		mapxpos = chartile[0] + offset;
+		mapypos = chartile[1] - offset;
     	$('div#map').gameMap.moveMap(mapxpos,mapypos);    	
     } else if (newMessage.method == "updateUsers") {
     	console.log("[STATUS] Updating User List...");
@@ -244,7 +241,9 @@ function onMessage(m) {
 					map[landy][landx] = 3;
 				}
 			}
-    	}   	
+    	}
+    	//Load popup
+    	setTimeout("loadPopup();",3000);
     } else {
     	console.log("[STATUS] Method not handled.");
     }
