@@ -15,7 +15,7 @@
 			<div id="header_title">Currently the game only supports Chrome and Safari browsers.</div>
 		</section>
 		<div id="loading_container"> 
-			<div id="loading_text">Welcome to City Monopoly!</div>
+			<div id="loading_text">Welcome to Monopoly City!</div>
 			<div id="pageProgressBar"><div id="pageProgressBar_img"></div></div>
 		</div>
 		<section id="content_container">
@@ -53,7 +53,14 @@
 				<div id="userlist"></div>
 			</div>
 			<div id="chat_container"></div>
-			<div id="popup_container">You landed on somebody's property. You have to pay XXX rent!</div>
+			<div id="popup_container">
+				<div id="popup_bg"></div>	
+				<div id="popup_popup">
+					<a id="popup_button" href="#">x</a>
+					<h3 id="popup_header">Welcome!</h3>
+					<p id="popup_text">Welcome to monopoly city!</p>
+				</div>
+			</div>			
 			<div id="map">
 				<div id="character">
 					<div id="char_image"></div>
@@ -83,7 +90,7 @@
 		<div id="fb-root"></div>
 		<script type="text/javascript" src ="scripts/global.js"></script>
 		<script type="text/javascript" src ="scripts/helperFunctions.js"></script>
-		<script type="text/javascript" src ="scripts/fb.js"></script>
 		<script type="text/javascript" src ="scripts/channel.js"></script>	
+		<script type="text/javascript" src ="scripts/fb.js"></script>
 	</body>
 </html>

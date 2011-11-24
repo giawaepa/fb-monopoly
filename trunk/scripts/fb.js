@@ -33,23 +33,18 @@ FB.getLoginStatus(function(response) {
 	  	});
 	  	*/
 	  FB.login(function(response) {
-		    if(response.status == 'connected'){
-		      authResponse(response);
+		    if(response.authResponse){
 		    }else{
 		      //user canceled login so show like us prompt
 		    }
-		  }, {scope: ''});
-		  
-		//window.location = "https://www.facebook.com/dialog/oauth/?client_id="+app_id+"&redirect_uri="+app_domain+"&response_type=token";
-		
+		  }, {scope: 'user_location,user_photos,email'});
 	} else if (response.status == "unknown") {
 		  FB.login(function(response) {
-			    if(response.status == 'connected'){
-			      authResponse(response);
+			    if(response.authResponse){
 			    }else{
 			      //user canceled login so show like us prompt
 			    }
-			  }, {scope: 'user_likes'});
+			  }, {scope: 'user_location,user_photos,email'});
 	} else if (response.status == "connected") {
 		console.log('[STATUS] Welcome!  Fetching your information.... ');
 		
