@@ -4,19 +4,25 @@ body {
 	font-family:Sans-serif;
 	padding-left: 10%; 
 }
+a:link {
+	text-decoration:none;
+}
 
 /* Header Container */
 section#header_container {
-	margin-top: 20px;
-	margin-left: 441px;
-	height: 20px;
-	width: 310px;
+	height: 25px;
+	width: 750px;
 	padding: 5px;
-	border-radius: 5px 5px 0px 0px;	
+	border: solid 1px #D8D8D8;
+	border-radius: 0px 0px 5px 5px;
+	background: #F2F2F2;
+	margin-top: -8px;
+	margin-bottom: 20px;
 }
 section#header_container div {
 	margin-left: 5px;
-	float: right;.
+	float: right;
+	font-size: small;
 }
 section#header_container:after {
     content: ".";
@@ -63,11 +69,10 @@ div#pageProgressBar_img {
 /* Profile Container */
 div#profile_container {
 	position: absolute;
-	width: 750px;
-	height: 60px;
+	width: 760px;
+	height: 35px;
 	margin: 1px;
-	padding-top: 10px;
-	padding-left: 10px;
+	padding-top: 15px;
 	background-color: black;
 	z-index: 9999;
     font-size: small;
@@ -88,6 +93,9 @@ div#profile_container:after {
     height: 0;
     clear: both;
     visibility: hidden;
+}
+#img_profile {
+	margin-top: -15px;
 }
 
 /* Interface Container */
@@ -137,17 +145,18 @@ section#interface {
 /* Chat Container */
 #chat_container {
 	position: absolute;
-	width: 300px;
-	height: 100px;
-	margin-top: 80px;
-	margin-left: 444px;
+	width: 360px;
+	height: 50px;
+	margin-top: 308px;
+	margin-left: 390px;
 	padding: 5px;
 	background-color: white;
 	z-index: 9998;
 	font-size: small;
 	opacity: 0.8;
 	filter:alpha(opacity=0.8);
-	border-radius: 5px;
+	border-radius: 5px 0px 0px 0px;
+	border: 1px solid #D8D8D8;
 	overflow:hidden;
 }
 
@@ -173,8 +182,8 @@ section#interface {
 #console #message_box {
 	position: absolute;
 	margin-top: 4px;
-	margin-left: 245px;
-	width: 340px;
+	margin-left: 280px;
+	width: 300px;
 	z-index: 9998;
 }
 #console #message_sendBtn {
@@ -188,11 +197,11 @@ section#interface {
 #userlist_container {
 	position: absolute;
 	margin-left: 1px;
-	margin-top: 71px;
+	margin-top: 60px;
 	padding-left: 5px;
 	width: 100px;
 	height: 300px;
-	background-color: white;
+	background-color: none;
 	color: black;
 	z-index: 9998;
     font-size: small;
@@ -242,13 +251,13 @@ section#interface {
 	-webkit-perspective-origin: 0% 300px;
 	margin-top: 307px;
 	margin-left: 1px;
-	background-color: #B40404;
+	background-color: #D0FA58;
 	width: 100px;
 	height: 90px;
 	-moz-border-radius: 80px;
 	-webkit-border-radius: 80px;
 	border-radius: 0px 40px 0px 30px;
-	border: 2px solid #424242;
+	border: 1px solid #D8D8D8;
 	z-index: 9999;
 	opacity:0.8;
 	filter:alpha(opacity=0.8);
