@@ -196,21 +196,9 @@ function onMessage(m) {
 		var landuser = newMessage.userid;
 		
     	//Change tile
-		if (landtype == '1') {		
-			if ( landuser == user_id )
-			{
-				$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_user");
-				map[landy][landx] = 2;
-				
-				$('#chat_container').append(newMessage.userid + " bought a piece of land<br />");
-		    	$('#chat_container').animate({ scrollTop: $("#chat_container").prop("scrollHeight") }, 3000);
-			}
-			else
-			{
-				$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_otheruser");
-				map[landy][landx] = 3;
-			}
-		}
+		updateland(landtype, landuser, landx, landy);
+		$('#chat_container').append(newMessage.userid + " bought a piece of land<br />");
+    	$('#chat_container').animate({ scrollTop: $("#chat_container").prop("scrollHeight") }, 3000);
 
 
     } else if (newMessage.method == "getPurchased") {  
@@ -229,21 +217,10 @@ function onMessage(m) {
 			var landuser = newMessage.maplist[i].userid;			
 			
         	//Change tile
-    		if (landtype == '1') {
-				if ( landuser == user_id )
-				{
-					$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_user");
-					map[landy][landx] = 2;
-				}
-				else
-				{
-					$("div#map_tile_"+landx+"_"+landy).removeClass("tile grass_0").addClass("tile ground_otheruser");
-					map[landy][landx] = 3;
-				}
-			}
+			updateland(landtype, landuser, landx, landy);
     	}
     	//Load popup
-    	setTimeout("loadPopup('ok');",3000);
+    	setTimeout("loadPopup('ok','Welcome to monopoly city!');",3000);
     } else {
     	console.log("[STATUS] Method not handled.");
     }
