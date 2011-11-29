@@ -1,3 +1,8 @@
+/*
+ * Javascript Helper Functions
+ * Description: ProgressBar, Popups
+ */
+
 //Progress bar functions
 var updateProgressBar = function(percentage) {
 	var currentwidth = $('#pageProgressBar_img').width();
@@ -18,22 +23,36 @@ var updateProgressBar = function(percentage) {
 };
 
 //Popup functions
-var loadPopup = function(type) {
+var loadPopup = function(type,msg) {
+	
+	//Set type of popup
 	if (type == "ok") {
 		//$("#popup_popup").prepend('<a class="popup_button" id="popup_close" href="#">x</a>');
 		$("#popup_popup").append('<a class="popup_button" href="#">&nbsp&nbspOK&nbsp&nbsp</a>');
+		$('#popup_header').html("Update");
 	} else if (type == "upgrade") {
-		$("#popup_popup").append('<a class="popup_button" href="#">Upgrade</a>&nbsp&nbsp');
+		$("#popup_popup").append('<a class="popup_button" id="btn_upgrade" href="#">Upgrade</a>&nbsp&nbsp');
 		$("#popup_popup").append('<a class="popup_button" href="#">&nbsp&nbspNo&nbsp&nbsp</a>');
+		$('#popup_header').html("Upgrade");
 	} else if (type == "buy") {
-		$("#popup_popup").append('<a class="popup_button" href="#">&nbsp&nbspYes&nbsp&nbsp</a>&nbsp&nbsp');
+		$("#popup_popup").append('<a class="popup_button" id="btn_buy" href="#">&nbsp&nbspYes&nbsp&nbsp</a>&nbsp&nbsp');
 		$("#popup_popup").append('<a class="popup_button" href="#">&nbsp&nbspNo&nbsp&nbsp</a>');
+		$('#popup_header').html("Purchase");
 	}
+	$('#popup_text').html(msg);
+	
 	//Reset button functions
 	$('.popup_button').click(function() {
 		disablePopup();
 	});
+	$('#btn_upgrade').click(function() {
+		upgradeland();
+	})
+	$('#btn_buy').click(function() {
+		buyland();
+	})
 	
+	//Popup animations
 	if (popupStatus == 0) {
 		$("#popup_container").css("display","block");
 		$("#popup_container").animate({

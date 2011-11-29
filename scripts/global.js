@@ -10,33 +10,32 @@ var landtile = [-1,-1];
 var init_top = 370;
 var init_left = 125; 
 var mapxpos = 10, mapypos = -5;
-var offset = 10;
-var money = "";
+var offset = 5;
 var popupStatus = 0;
+var money = "";
 var rent = 100; 
 
-//Map
 var map = [[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
-            [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-            [1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
-			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-			[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
-			[1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
-			[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-			[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]];
-//Object Map
+           [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+           [1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
+		   [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		   [1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,0,1,1,1,1,1,0,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,0,0,0,0,0,0,0,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
+		   [1,0,1,1,1,1,1,1,1,0,1,1,1,1,1,1,1,1,0,1],
+		   [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+		   [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]];
+
 var objectmap = [[0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0],
 				[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 				[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -64,10 +63,7 @@ $(document).ready(function() {
 	var xAngle = 0, yAngle = 0;
 	var dice = false;	
 	
-	//Load Pop up (for testing)
-	//setTimeout("loadPopup('ok');",1000);
-	
-	//Loading container
+	//Set initial progress bar length
 	$('#pageProgressBar_img').css('width','20px');
 	
 	//Generate the map
@@ -100,14 +96,6 @@ $(document).ready(function() {
 	$('#land_up_btn').css('left','32px').css('top','32px');
 	$('#land_left_btn').css('left','-32px').css('top','32px');
 	
-	// Set bubble position
-	$('#bubble_yes_btn').css('left','-50px').css('top','0px');
-	$('#bubble_no_btn').css('left','50px').css('top','0px');
-	$('#bubble_upgrade_btn').css('left','-50px').css('top','0px');
-	$('#bubble_noupgrade_btn').css('left','50px').css('top','0px');
-	$('#bubble_pay_btn').css('left','-50px').css('top','0px');
-	$('#bubble_nopay_btn').css('left','50px').css('top','0px');
-	
 	// Set intersection button click
 	$('#arrow_down_btn').click(function() {
 		direction = 3;
@@ -127,51 +115,6 @@ $(document).ready(function() {
 	$('#arrow_left_btn').click(function() {
 		direction = 4;
 		moveChar();
-	});
-	
-	// Set bubble button click
-	$('#bubble_yes_btn').click(function() {
-		$('#bubble_yes_btn').css("visibility","hidden");
-		$('#bubble_no_btn').css("visibility","hidden");	
-		
-		// Call buy land method
-		buyland();
-	});
-	
-	$('#bubble_no_btn').click(function() {
-		$('#bubble_yes_btn').css("visibility","hidden");
-		$('#bubble_no_btn').css("visibility","hidden");
-	});
-	
-	$('#bubble_upgrade_btn').click(function() {
-		$('#bubble_upgrade_btn').css("visibility","hidden");
-		$('#bubble_noupgrade_btn').css("visibility","hidden");	
-		
-		// Call upgrade land method
-	});
-	
-	$('#bubble_noupgrade_btn').click(function() {
-		$('#bubble_upgrade_btn').css("visibility","hidden");
-		$('#bubble_noupgrade_btn').css("visibility","hidden");
-	});
-	
-	$('#bubble_pay_btn').click(function() {
-		$('#bubble_pay_btn').css("visibility","hidden");
-		$('#bubble_nopay_btn').css("visibility","hidden");	
-		
-		// Call upgrade land method
-	});
-	
-	$('#bubble_nopay_btn').click(function() {
-		$('#bubble_pay_btn').css("visibility","hidden");
-		$('#bubble_nopay_btn').css("visibility","hidden");
-		
-		// Call buy land
-		buyland();
-	});
-	
-	$('.popup_button').click(function() {
-		disablePopup();
 	});
 	
 	// Character movement and arrow display functions
@@ -382,7 +325,6 @@ $(document).ready(function() {
 		
 		// Debug info
 		console.log("x:"+chartile[0]+" y:"+chartile[1]);
-		//console.log("prev_x:"+prevtile[0]+" prev_y:"+prevtile[1]);
 		
 		// Reset direction
 		direction = 0;
@@ -395,49 +337,27 @@ $(document).ready(function() {
 			// Highlight tile respective to character position
 			hightlightTile();
 			
-			// Show bubble
+			// Show pop-up
 			if ( landtile[0] != -1 && landtile[1] != -1 )
 			{				
 				if ( map[landtile[1]][landtile[0]] == 1)
 				{
 					// If land is grass
-					$('#bubble_yes_btn').css("visibility","visible");
-					$('#bubble_no_btn').css("visibility","visible");
-					console.log("[LAND] buy?");
+					loadPopup('buy','Do you want to buy this property?');
 				}
 				else if ( map[landtile[1]][landtile[0]] == 2)
 				{
-					// If land is user land
-					// upgrade
-					//$('#bubble_upgrade_btn').css("visibility","visible");
-					//$('#bubble_noupgrade_btn').css("visibility","visible");
-					
-					//Open pop up
-					$('#popup_header').html("Upgrade");
-					$('#popup_text').html("Do you want to upgrade your property?");
-					loadPopup('upgrade');
-					
-					console.log("[LAND] upgrade?");
+					// If land is user land, ask for upgrade
+					loadPopup('upgrade','Do you want to upgrade your property?');
 				}
 				else if ( map[landtile[1]][landtile[0]] == 3)
 				{
 					// If land is other user land
 					// pay rent or re-purchase					
-					//$('#bubble_pay_btn').css("visibility","visible");
-					//$('#bubble_nopay_btn').css("visibility","visible");
-					
-					//Subtract rent
-					money = money - rent;
+					payrent();
 					
 					//Open pop up
-					$('#popup_header').html("Update");
-					$('#popup_text').html("You landed on somebody's property. You have to pay "+ rent +" rent!");
-					loadPopup('ok');
-					
-					$("#profile_money").html(money);
-					updateMoney();
-					
-					console.log("[LAND] pay or re-purchase?");
+					loadPopup('ok','You landed on somebody\'s property. You have to pay '+ rent +' rent!');
 				}				
 			}
 		}
@@ -491,16 +411,6 @@ $(document).ready(function() {
 				landtile[0] = x;
 				landtile[1] = y-1;
 			}
-		}
-	}
-	
-	// Buy land method
-	var buyland = function() {		
-		if (money > 100) {
-			money = money - 100;
-			$("#profile_money").html(money);
-			updateMoney();
-			updatePurchased(landtile[0]+'.'+landtile[1], '1');
 		}
 	}
 	
@@ -609,23 +519,4 @@ $(document).ready(function() {
 			$('#message_sendBtn').click();
 		}
 	});
-	
-	/*
-	//character animation
-	setInterval(function() {
-		if (isMoving == 0) {
-			bounce(3);
-		}
-	},10000);
-	
-	var bounce = function (i) {
-		$('#char_image').animate({top: '-='+(3*i)+'px'},i*100, 
-		function() {
-			$('#char_image').animate({top: '+='+(3*i)+'px'},i*100);
-			i--;
-			if (i > 0) {
-				bounce(i);
-			}
-		});
-	};*/
 });

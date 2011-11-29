@@ -137,8 +137,8 @@
 				tilegraphic = "ground_0";
 			} else if (config.map[y][x] == 1) {
 				tilegraphic = "grass_0";
-			} else if (config.map[y][x] == 2) {
-				tilegraphic = "ground_user";
+			} else if (config.map[y][x] == 4) {
+				tilegraphic = "house_1";
 			}
 			
 			if (config.object[y][x] == 1) {

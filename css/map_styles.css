@@ -63,13 +63,9 @@ div.content div.tile:hover {
 	left: 2px;
 }
 .house_1 {
-	background:transparent url('../images/house.png') top left no-repeat; 
-	background-size: 100px auto;
-	position:relative;
-	width: 100px;
-	height: 100px;
-	bottom: 20px;
-	left: -15px;
+	background: url('../images/UI.png') no-repeat -428px -620px;
+	width: 59px;
+	height: 42px;
 }
 /********************* Characters *********************************/
 #character {
