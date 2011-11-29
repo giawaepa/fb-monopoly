@@ -1,0 +1,27 @@
+	// Set bubble position
+	$('#bubble_yes_btn').css('left','-50px').css('top','0px');
+	$('#bubble_no_btn').css('left','50px').css('top','0px');
+	$('#bubble_upgrade_btn').css('left','-50px').css('top','0px');
+	$('#bubble_noupgrade_btn').css('left','50px').css('top','0px');
+	$('#bubble_pay_btn').css('left','-50px').css('top','0px');
+	$('#bubble_nopay_btn').css('left','50px').css('top','0px');
+	
+
+	/*
+	//character animation
+	setInterval(function() {
+		if (isMoving == 0) {
+			bounce(3);
+		}
+	},10000);
+	
+	var bounce = function (i) {
+		$('#char_image').animate({top: '-='+(3*i)+'px'},i*100, 
+		function() {
+			$('#char_image').animate({top: '+='+(3*i)+'px'},i*100);
+			i--;
+			if (i > 0) {
+				bounce(i);
+			}
+		});
+	};*/
